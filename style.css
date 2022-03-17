@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 
 html, body {
     margin : 0;
+    color: 424242;
     font-family: 'Nunito',sans-serif;
 }
 
@@ -12,23 +14,38 @@ a { color: #529FAC; }
 h2, h3 {
     font-family: 'Sniglet', sans-serif;
     font-weight: 300;
+    color: #2C7F8D;
+} 
+
+h3 { font-size: 28px; }
+
+h2 {
+    font-size: 42px;
+    text-align: center;
 }
 
+.cover-page,
 .page {
-    overflow: hidden;
     display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    overflow: hidden;
     flex-direction: column;
     width: 850px;
-    height: 1200px;
+    height: 1269px;
     page-break-inside: avoid;
 }
 
-/* temp */
-.page * {  max-width: 100%; }
-
-.page:first-of-type {
-    /* display: none; */
+.cover-page {
+    width: 1010px;
+    height: 1429px;
 }
+
+.cover {
+    object-fit: cover;
+    max-height: 40%;
+}
+
 
 header {
     background-color: #1B4F59;
@@ -43,23 +60,29 @@ h1 {
     font-size: 26px;
     font-family: 'Sniglet', sans-serif;
     font-weight: 300; }
-h1 span {
+h1 .subtitle {
     display: inline-block;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 } 
 
-.logo { width: 330px; object-fit: contain; }
-
-
-
-strong {
-    display: inline-block;
-    margin-bottom: 15px;
-    font-size: 28px;
-    color: #317E8B;
-    font-family: "Caveat", sans-serif;
+.balloon-title { 
+    display: inline-block; 
+    position: relative;
+    width: 40px;
+    text-align: center; }
+.balloon-title svg {
+    position: absolute;
+    top: -31px;
+    left: -22px;
+    width: 70px;
 }
+
+.logo { 
+    width: 330px; 
+    object-fit: contain; 
+    object-position: 50% -5px;}
+
 
 .requirements {
     display: flex;
@@ -71,11 +94,31 @@ strong {
 .requirements li:last-of-type { margin-bottom: 0; }
 .requirements li { margin-bottom: 10px; }
 
+strong {
+    display: inline-block;
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #317E8B;
+    font-family: "Caveat", sans-serif;
+}
+
 ul {
     margin: 0;
     padding: 0 35px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 175px;
 }
 
+::marker {
+    color: #2C7F8D;
+}
+
+.skills, ul {
+    width: 100%;
+}
 
 
 .reminder {
@@ -84,22 +127,165 @@ ul {
     padding: 10px 70px;
     color: #529FAC;
     margin-bottom: 30px; }
-.reminder img {
-    object-fit: contain;
-    padding: 15px;
-    width: 100px; }
+.reminder .play-button-icon {
+    height: 100%;
+    width: 140px;
+    margin-right: 50px; }
 .reminder p {
     font-size: 17px;
     padding: 0 20px;
 }
 .reminder a { color: #529FAC; }
 
-.legal { display: flex; }
+.legal { display: flex; padding: 20px; }
 .legal > * { padding: 20px; }
 .legal p {
     font-size: 12px;
+    vertical-align: middle;
     margin: 0; }
 .legal img {
-    width: 600px;
+    width: 180px;
     object-fit: contain;
+}
+
+
+/* Pages */
+
+.page {
+    padding: 80px;
+    position: relative;
+}
+
+.introduction { margin-bottom: 25px; }
+.introduction h2 { margin: 0 0 50px; }
+.introduction p { margin: 0 0 20px; }
+
+.introduction p,
+.section-introduction p,
+.steps {
+    padding: 0 15px;
+}
+
+.section-introduction { margin: 0 0 10px; }
+.section-introduction h2{
+    text-align: start;
+    font-size: 32px;
+    margin: 0 0 24px;
+}
+
+.steps-title {
+    position: relative;
+    width: fit-content;
+    font-family: 'Caveat Brush', sans-serif;
+    font-size: 50px;
+    margin: 50px 0 70px; }
+.steps-title span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 100%;
+
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+
+    color: white;
+    background-color: #2C7F8D; }
+.steps-title svg {
+    position: absolute;
+    z-index: -1;
+    top: -420px;
+    right: -130px;
+    width: 350px; }
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px 20px;
+}
+
+.page figure {
+    max-width: 250px;
+    margin: 0;
+    break-inside: avoid;
+}
+
+.page figure img {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+figcaption {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0 10px;
+}
+
+figcaption span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border-radius: 100px;
+
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+    color: white;
+    background-color: #2C7F8D;
+}
+
+.page > svg {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+circle {
+    fill: #DDEDF0;
+}
+
+.balloon-top-left circle:nth-child(1) { cx: 240; cy:  5; r:  50; }
+.balloon-top-left circle:nth-child(2) { cx: 150; cy: 15; r:  75; }
+.balloon-top-left circle:nth-child(3) { cx:  25; cy: 40; r: 120; }
+
+.balloon-top-right circle:nth-child(1) { cx:  930; cy: 0;  r: 50; }
+.balloon-top-right circle:nth-child(2) { cx: 1000; cy: 8;  r: 75; }
+
+.balloon-bottom-left circle:nth-child(1) { cx: 140;  cy: 1460;  r: 60; }
+.balloon-bottom-left circle:nth-child(2) { cx:  50;  cy: 1420;  r: 65; }
+.balloon-bottom-left circle:nth-child(3) { cx: -10;  cy: 1345;  r: 50; }
+
+
+.page-number {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    bottom: 40px;
+    right: 40px;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    
+    color: white;
+    background-color: #2C7F8D;
+
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
 }
