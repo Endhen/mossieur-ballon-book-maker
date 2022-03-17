@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+
+html, body {
+    margin : 0;
+    font-family: 'Nunito',sans-serif;
+}
+
+a { color: #529FAC; }
+
+h2, h3 {
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300;
+}
+
+.page {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 850px;
+    height: 1200px;
+    page-break-inside: avoid;
+}
+
+/* temp */
+.page * {  max-width: 100%; }
+
+.page:first-of-type {
+    /* display: none; */
+}
+
+header {
+    background-color: #1B4F59;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    color: white;
+    font-size: 26px;
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300; }
+h1 span {
+    display: inline-block;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+} 
+
+.logo { width: 330px; object-fit: contain; }
+
+
+
+strong {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 28px;
+    color: #317E8B;
+    font-family: "Caveat", sans-serif;
+}
+
+.requirements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-grow: 2;
+    padding: 0 80px; }
+.requirements li:last-of-type { margin-bottom: 0; }
+.requirements li { margin-bottom: 10px; }
+
+ul {
+    margin: 0;
+    padding: 0 35px;
+}
+
+
+
+.reminder {
+    display: flex;
+    background-color: #D3E8EB;
+    padding: 10px 70px;
+    color: #529FAC;
+    margin-bottom: 30px; }
+.reminder img {
+    object-fit: contain;
+    padding: 15px;
+    width: 100px; }
+.reminder p {
+    font-size: 17px;
+    padding: 0 20px;
+}
+.reminder a { color: #529FAC; }
+
+.legal { display: flex; }
+.legal > * { padding: 20px; }
+.legal p {
+    font-size: 12px;
+    margin: 0; }
+.legal img {
+    width: 600px;
+    object-fit: contain;
+}
