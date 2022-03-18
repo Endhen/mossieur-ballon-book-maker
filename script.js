@@ -6,6 +6,7 @@ const colors = [
     '#BAE3D9', // green
 ]
 
+var pages = document.querySelectorAll('.page')
 
 function rand(min, max) {  
     min = Math.ceil(min);  
@@ -49,22 +50,31 @@ function setColors(page) {
     });
 }
 
-
-var pages = document.querySelectorAll('.page')
-
-
-// TODO Page numbers
 function setPageNumber(page) {
     let pageNumber = document.querySelectorAll('.page:nth-child(' + page + ') .page-number')
     pageNumber[0].innerText = page - 1
 }
 
-// TODO Set content
-// TODO Set level
+function setLevel() {
+    let level = document.querySelector('[data-level]')
+    let cords = document.querySelectorAll('.difficulty svg path:nth-child(1)')
+    let balloons = document.querySelectorAll('.difficulty svg path:nth-child(2)')
+
+    console.log(balloons[0])
+    for(let i=0; i < level.dataset.level; i++) {
+        if (balloons.length >= level.dataset.level) {
+            balloons[i].style.fill = '#529FAC'
+            cords[i].style.stroke = '#529FAC'
+        }
+    }
+}
+
 // TODO Set tool number
+// TODO Set content
 
 window.onload = function() {
 
+    setLevel()
     pages.forEach((page, i) => {
         page = i + 2
         setColors(page)
