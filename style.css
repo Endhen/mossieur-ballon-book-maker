@@ -84,6 +84,34 @@ h1 .subtitle {
     object-position: 50% -5px;}
 
 
+
+.equipment li {
+    position: relative;
+    list-style-type: none;
+}
+
+.equipment li::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+    top: 0px;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    
+    border-radius: 100%;
+    content: attr(data-quantity);
+
+    color: white;
+    background-color: #2C7F8D;
+
+    font-family: 'Sniglet', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
+
 .requirements {
     display: flex;
     flex-wrap: wrap;

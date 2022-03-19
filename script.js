@@ -69,9 +69,6 @@ function setLevel() {
     }
 }
 
-// TODO Set tool number
-// TODO Set content
-
 window.onload = function() {
 
     setLevel()
