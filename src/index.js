@@ -1,3 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
+import App from './component/App.jsx'
+
+ReactDOM.render(<App/>, document.getElementById('root'))
+
 const colors = [
     '#F2C7C7', // red
     '#F2D9EB', // pink
@@ -60,7 +67,6 @@ function setLevel() {
     let cords = document.querySelectorAll('.difficulty svg path:nth-child(1)')
     let balloons = document.querySelectorAll('.difficulty svg path:nth-child(2)')
 
-    console.log(balloons[0])
     for(let i=0; i < level.dataset.level; i++) {
         if (balloons.length >= level.dataset.level) {
             balloons[i].style.fill = '#529FAC'
