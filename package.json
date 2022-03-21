@@ -1,0 +1,11 @@
+{
+  "name": "mossieur-ballon-book-maker",
+  "version": "1.0.0",
+  "description": "Convert json structure into stylized PDF documents",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ncho",
+  "license": "ISC"
+}

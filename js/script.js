@@ -23,7 +23,7 @@ function shuffleArray(arr) {
   }
 
 
-function setColors(page) {
+function setRandomColors(page) {
 
     var balloonGroups = [
         document.querySelectorAll('.page:nth-child(' + page +  ') .balloon-bottom-left circle'),
@@ -69,12 +69,15 @@ function setLevel() {
     }
 }
 
+// TODO Integrate dynamic content
+// TODO Integrate differetns languages
+
 window.onload = function() {
 
     setLevel()
     pages.forEach((page, i) => {
         page = i + 2
-        setColors(page)
+        setRandomColors(page)
         setPageNumber(page)
     })
 }
