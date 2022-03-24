@@ -28,7 +28,7 @@ h2 {
 .page {
     display: flex;
     position: relative;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     overflow: hidden;
     flex-direction: column;
     width: 850px;
@@ -192,6 +192,7 @@ ul {
 .section-introduction p,
 .steps {
     padding: 0 15px;
+    margin: 0 0 30px;
 }
 
 .section-introduction { margin: 0 0 10px; }
