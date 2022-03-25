@@ -1,0 +1,73 @@
+
+#app {
+    display: flex;
+    flex-direction: row;
+}
+
+.preview {
+    width: 770px;
+    transform: matrix(.7, 0, 0, .7, -105, -1750);
+}
+
+.preview-container {
+    height: 100vh;
+    overflow-y: scroll;
+    background: #575757;
+}
+
+.page,
+.cover-page {
+    margin: 30px;
+    box-shadow: 3px 4px 20px 2px #00000045;;
+}
+
+
+.text-editor {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 50px;
+    height: 85vh;
+}
+
+.text-editor h1 {
+    color: rgb(63, 112, 124);
+    margin:  0 0 30px;
+}
+
+.text-editor textarea {
+    width: 90%;
+    flex-grow: 2;
+    border-radius: 5px;
+    padding: 30px;
+    border: 1px solid rgb(116, 116, 116)
+}
+
+.text-editor textarea:focus-visible {
+    border: 2px solid rgb(109, 152, 163) !important;
+    outline: none;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    right: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px !important;
+    background: #afafaf;   
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px !important;
+    background: rgb(109, 152, 163);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(109, 152, 163);
+}

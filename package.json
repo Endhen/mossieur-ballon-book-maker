@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Convert json structure into stylized PDF documents",
-  "main": "script.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "author": "Ncho",
   "license": "ISC",
   "dependencies": {
+    "prismjs": "^1.27.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "uuid": "^8.3.2"

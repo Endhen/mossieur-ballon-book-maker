@@ -1,12 +1,18 @@
 import React from "react";
-import content from '../../content/tutorials/content.json'
 import Introduction from './Introduction.jsx'
 import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
 import { v4 as uuid } from 'uuid';
 
+// TODO last pix functionnality
 
 class PageBuilder extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            content: props.conent
+        }
+      }
 
     getSectionSize() {
         return 1;
@@ -29,6 +35,11 @@ class PageBuilder extends React.Component {
         }
 
         return rearrangedContent
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        let content = props
+        return content
     }
 
 
@@ -87,11 +98,13 @@ class PageBuilder extends React.Component {
                             breakShift = 0,
                             reset = i == content.length-1
 
-                        console.warn(reset)
-
                         function stepBreak(reset = true) {
+                            let classNameLast
+                            !reset?classNameLast = " last":classNameLast = ""
+                            // TODO Last class dosent work
+
                             currentPage.push(React.createElement("div", 
-                                { className: "steps" , key: uuid() }, 
+                                { className: "steps" + classNameLast, key: uuid() }, 
                                 [...figures]
                             ))
                             figures = []
@@ -99,12 +112,9 @@ class PageBuilder extends React.Component {
                         }
 
                         for (let j = pointer; j < steps.length; j++) {
-                            console.log("break shift", breakShift)
-                            console.log("position", j-breakShift)
-                            console.log("step number", j+1-breakShift)
+
                             if (0 == ((j-breakShift) % 3)) { // Space took by a row of steps
                                 pageSpace -= 3
-                                console.error('break shift')
                             }
                             
                             let step = '<span>'+ (j+1-breakShift) +'</span>' + steps[j]
@@ -118,7 +128,7 @@ class PageBuilder extends React.Component {
                                     figures.push(
                                         <figure key={uuid()}>
                                             {/* <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img> */}
-                                            <img src={require('../../content/tutorials/steps/step01.webp')} alt=""></img>
+                                            <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img>
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                         </figure>
                                     )
@@ -147,8 +157,8 @@ class PageBuilder extends React.Component {
     }
 
     render() {
-        let tutorials = content.tutorials,
-            introduction = content.introduction
+        let tutorials = this.state.content.tutorials,
+            introduction = this.state.content.introduction
 
         return (
             <React.Fragment>

@@ -3,8 +3,11 @@ import ReactDOM from "react-dom";
 
 import App from './component/App.jsx'
 
+// TODO Integrate dynamic content
+// TODO Integrate differetns languages
+
 console.clear()
-ReactDOM.render(<App/>, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('app'))
 
 const colors = [
     '#F2C7C7', // red
@@ -75,9 +78,6 @@ function setLevel() {
         }
     }
 }
-
-// TODO Integrate dynamic content
-// TODO Integrate differetns languages
 
 window.onload = function() {
 
