@@ -13,30 +13,51 @@ import template from '../content/template/template.json'
 import PageBuilder from './sections/PageBuilder.jsx'
 import '../js/yaml/yaml.dist.js'
 
-// TODO handle JSON errors
-// TODO Update level svgs on change
-// TODO Update random color on change
+import AceEditor from "react-ace"
+
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-tomorrow";
+
+// TODO Handle JSON errors -> visible message
+// TODO Import index.js functions
+    // TODO Update level svgs on change
+    // TODO Update random color on change
+    // TODO Pagination 
+// TODO Functionnality Break
+// TODO Save changements in json file
+// TODO Mode : PDF / Book
+
 
 class App extends React.Component {
-
+    
     constructor(props) {
         super(props)
 
         this.state = {
             content: content,
-            jsonText: YAML.stringify(content, 4)
+            textContent: JSON.stringify(content, null, 4),
+            JSONStatus: {
+                isInvalid: false,
+                errorMessage: ""
+            }
         }
+
+        this.contentUpdate = this.contentUpdate.bind(this);
     }
 
     contentUpdate(input) {
 
         let printError = function(error, explicit) {
             console.warn(`[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
+
+            // this.setState({
+            //     textContent: input
+            // })
         }
 
         try {
             this.setState({
-                content: YAML.parse(input)
+                content: JSON.parse(input)
             })
         } catch (e) {
             if (e instanceof SyntaxError) {
@@ -47,18 +68,14 @@ class App extends React.Component {
         }
 
         this.setState({
-            jsonText: input
+            textContent: input
         })
-
+        
     }
     
     render() {
         let title = this.state.content.cover.title
         let content = this.state.content
-        // let json = YAML.stringify(this.state.content, null, 3)
-        let json = YAML.stringify(this.state.content, 3)
-        // console.log(json)
-        // let json = YAML.stringify(this.state.content)
 
         return (
             <React.Fragment>
@@ -121,10 +138,21 @@ class App extends React.Component {
             </div>
             <div className="text-editor">
                 <h1>Content editor</h1>
-                {/* <pre>
-                    <code className="language-json">{ json }</code>
-                </pre> */}
-                <textarea spellCheck="false" value={this.state.jsonText} onChange={ newInput => { this.contentUpdate(newInput.target.value) } } ></textarea>
+                <AceEditor
+                    mode="javascript"
+                    theme="tomorrow"
+                    width='670px'
+                    height='700px'
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    onChange={this.contentUpdate}
+                    name="ace_editor"
+                    editorProps={{ $blockScrolling: true }}
+                    value={ this.state.textContent }
+                    setOptions={{
+                        tabSize: 4,
+                    }}
+                />
             </div>
             </React.Fragment>
         )

@@ -9,18 +9,31 @@ module.exports = {
     },
     module: {
     rules: [
-    {
-        test: /\.(js|jsx)$/,
-        use: "babel-loader",
-    },
-    {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-    },
-    {
-        test: /\.(png|webp|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-    }
+        {
+            test: /\.m?jsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        ['@babel/preset-env', { targets: "defaults" }]
+                    ]
+                }
+            }
+        },
+        {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+        },
+        {
+            test: /\.(png|webp|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+        },
+        {
+            test: /\.ya?ml$/,
+            type: 'json', // Required by Webpack v4
+            use: 'yaml-loader'
+        }
     ]
     },
   plugins: [new HtmlWebPlugin({ template: "./src/index.html" })],
