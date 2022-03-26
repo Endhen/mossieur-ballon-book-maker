@@ -2,7 +2,7 @@
   "name": "mossieur-ballon-book-maker",
   "private": true,
   "version": "1.0.0",
-  "description": "Convert json structure into stylized PDF documents",
+  "description": "Convert JSON structure into stylized PDF documents",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",

@@ -52,6 +52,23 @@
     outline: none;
 }
 
+.text-editor h1 {
+    margin: 0;
+}
+
+.text-editor p {
+    padding: 5px;
+    height: 20px;
+}
+
+p.error {
+    color: #b10808;
+    background-color: #ffdada;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 
 /* width */
 ::-webkit-scrollbar {

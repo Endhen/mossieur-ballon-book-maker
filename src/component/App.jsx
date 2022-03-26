@@ -11,19 +11,18 @@ import logo from '../content/template/assets/Logo.png'
 import content from '../content/tutorials/content.json'
 import template from '../content/template/template.json'
 import PageBuilder from './sections/PageBuilder.jsx'
-import '../js/yaml/yaml.dist.js'
 
 import AceEditor from "react-ace"
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-tomorrow";
 
-// TODO Handle JSON errors -> visible message
 // TODO Import index.js functions
     // TODO Update level svgs on change
     // TODO Update random color on change
     // TODO Pagination 
 // TODO Functionnality Break
+// TODO Functionnality Superimposed
 // TODO Save changements in json file
 // TODO Mode : PDF / Book
 
@@ -37,7 +36,7 @@ class App extends React.Component {
             content: content,
             textContent: JSON.stringify(content, null, 4),
             JSONStatus: {
-                isInvalid: false,
+                isValid: true,
                 errorMessage: ""
             }
         }
@@ -48,16 +47,22 @@ class App extends React.Component {
     contentUpdate(input) {
 
         let printError = function(error, explicit) {
-            console.warn(`[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
+            console.log(error.message)
 
-            // this.setState({
-            //     textContent: input
-            // })
-        }
+            this.setState({
+                JSONStatus: {
+                    isValid: false,
+                    errorMessage: `[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`
+                }
+            })
+        }.bind(this)
 
         try {
             this.setState({
-                content: JSON.parse(input)
+                content: JSON.parse(input),
+                JSONStatus: {
+                    isValid: true
+                }
             })
         } catch (e) {
             if (e instanceof SyntaxError) {
@@ -88,7 +93,7 @@ class App extends React.Component {
                                 {title.main} 
                                 <span className="balloon-title"> {title.chapter}
                                 <MainTitleOrnement></MainTitleOrnement>
-                                </span> - {title.subject} {/* // TODO superimposed = false */}
+                                </span> - {title.subject}
                             </h1>
                         </header>
 
@@ -96,8 +101,8 @@ class App extends React.Component {
                         <section className="reminder">
                             <PlayButton></PlayButton>
                             <p>
-                                {template.reminder[0]}
-                                <a href={content.cover.links.tutorial.link}>{content.cover.links.tutorial.title}</a> ”
+                                {template.reminder[0]}  
+                                <a href={content.cover.links.tutorial.link}>{content.cover.links.tutorial.title}</a>
                                 {template.reminder[1]}
                                 <a href={content.cover.links.youtube}>
                                 {template.reminder[2]}</a>
@@ -138,6 +143,8 @@ class App extends React.Component {
             </div>
             <div className="text-editor">
                 <h1>Content editor</h1>
+                {console.log("Is valid : ", this.state.JSONStatus.isValid)}
+                <p className={ this.state.JSONStatus.isValid?"":"error" }>{!this.state.JSONStatus.isValid?this.state.JSONStatus.errorMessage:""}</p>
                 <AceEditor
                     mode="javascript"
                     theme="tomorrow"
