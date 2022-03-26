@@ -12,7 +12,11 @@ class PageBuilder extends React.Component {
         this.state = {
             content: props.conent
         }
-      }
+    }
+
+    static getDerivedStateFromProps(content, state) {
+        return content
+    }
 
     getSectionSize() {
         return 1;
@@ -37,28 +41,21 @@ class PageBuilder extends React.Component {
         return rearrangedContent
     }
 
-    static getDerivedStateFromProps(props, state) {
-        let content = props
-        return content
-    }
-
-
     buildPage(tutorials, introduction) {
         let pageSpace = 10,
             content = this.initializeContent(tutorials),
             pages = []
         var currentPage = [<Introduction key={uuid()} content={introduction}></Introduction>]
 
-        function resetCurrentPage(yes = null) {
+        function resetCurrentPage() {
             pages.push(React.createElement("div", 
                 { className: "page", key: uuid() }, 
                 [
                     ...currentPage, 
                     <PageOrnements key={uuid()}></PageOrnements>,
-                    <span key={uuid()} className="page-number">1</span>
+                    <span key={uuid()} className="page-number">{pages.length + 1}</span>
                 ]
             ))
-            // currentPage.splice(0, currentPage.length)
             currentPage = []
             pageSpace = 13
         }

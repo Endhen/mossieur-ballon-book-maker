@@ -18,12 +18,11 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-tomorrow";
 
 // TODO Import index.js functions
-    // TODO Update level svgs on change
-    // TODO Update random color on change
-    // TODO Pagination 
+    // TODO Update random color on change 
 // TODO Functionnality Break
 // TODO Functionnality Superimposed
 // TODO Save changements in json file
+// TODO Template JSON edition
 // TODO Mode : PDF / Book
 
 
@@ -112,7 +111,7 @@ class App extends React.Component {
                         <section className="requirements">
                             <div className="difficulty">
                                 <strong data-level={content.cover.level}>{template.title.level}</strong>
-                                <TutoLevel></TutoLevel>
+                                <TutoLevel level={content.cover.level}></TutoLevel>
                             </div>
                             <div className="equipment">
                                 <strong>{template.title.equipment}</strong>
