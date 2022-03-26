@@ -295,10 +295,6 @@ figcaption span {
     top: 0;
 }
 
-.page circle {
-    fill: #DDEDF0;
-}
-
 .balloon-top-left circle:nth-child(1) { cx: 240; cy:  5; r:  50; }
 .balloon-top-left circle:nth-child(2) { cx: 150; cy: 15; r:  75; }
 .balloon-top-left circle:nth-child(3) { cx:  25; cy: 40; r: 120; }

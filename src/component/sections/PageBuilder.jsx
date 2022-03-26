@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 import Introduction from './Introduction.jsx'
 import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid'
 
 // TODO last pix functionnality
 

@@ -3,19 +3,18 @@ import React from 'react'
 import TutoLevel from './svg/TutoLevel.jsx'
 import PlayButton from './svg/PlayButton.jsx'
 import MainTitleOrnement from './svg/MainTitleOrnement.jsx'
+import PageBuilder from './sections/PageBuilder.jsx'
+import AceEditor from "react-ace"
 
-import '../css/print.css'
 import '../css/app.css'
+import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
 import content from '../content/tutorials/content.json'
 import template from '../content/template/template.json'
-import PageBuilder from './sections/PageBuilder.jsx'
 
-import AceEditor from "react-ace"
-
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/mode-javascript"
+import "ace-builds/src-noconflict/theme-tomorrow"
 
 // TODO Import index.js functions
     // TODO Update random color on change 
@@ -23,8 +22,8 @@ import "ace-builds/src-noconflict/theme-tomorrow";
 // TODO Functionnality Superimposed
 // TODO Save changements in json file
 // TODO Template JSON edition
-// TODO Mode : PDF / Book
-
+// TODO Integrate differetns languages with tabs
+// TODO Mode : PDF / Book 
 
 class App extends React.Component {
     
@@ -40,14 +39,12 @@ class App extends React.Component {
             }
         }
 
-        this.contentUpdate = this.contentUpdate.bind(this);
+        this.contentUpdate = this.contentUpdate.bind(this)
     }
 
     contentUpdate(input) {
 
         let printError = function(error, explicit) {
-            console.log(error.message)
-
             this.setState({
                 JSONStatus: {
                     isValid: false,
@@ -65,9 +62,9 @@ class App extends React.Component {
             })
         } catch (e) {
             if (e instanceof SyntaxError) {
-                printError(e, true);
+                printError(e, true)
             } else {
-                printError(e, false);
+                printError(e, false)
             }
         }
 
@@ -142,7 +139,6 @@ class App extends React.Component {
             </div>
             <div className="text-editor">
                 <h1>Content editor</h1>
-                {console.log("Is valid : ", this.state.JSONStatus.isValid)}
                 <p className={ this.state.JSONStatus.isValid?"":"error" }>{!this.state.JSONStatus.isValid?this.state.JSONStatus.errorMessage:""}</p>
                 <AceEditor
                     mode="javascript"
@@ -165,4 +161,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default App
