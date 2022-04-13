@@ -14,16 +14,20 @@ import content from '../content/tutorials/content.json'
 import template from '../content/template/template.json'
 
 import "ace-builds/src-noconflict/mode-javascript"
-import "ace-builds/src-noconflict/theme-tomorrow"
+import 'ace-builds/src-noconflict/theme-solarized_dark';
 
-// TODO Import index.js functions
-    // TODO Update random color on change 
+// TODO Last pix functionnality
 // TODO Functionnality Break
 // TODO Functionnality Superimposed
+// * Try every steps, title and introduction block configuration
+// ! Template breaks if we add too many steps
+// ! Section counter dosent reset
+
 // TODO Save changements in json file
 // TODO Template JSON edition
 // TODO Integrate differetns languages with tabs
 // TODO Mode : PDF / Book 
+
 
 class App extends React.Component {
     
@@ -142,7 +146,7 @@ class App extends React.Component {
                 <p className={ this.state.JSONStatus.isValid?"":"error" }>{!this.state.JSONStatus.isValid?this.state.JSONStatus.errorMessage:""}</p>
                 <AceEditor
                     mode="javascript"
-                    theme="tomorrow"
+                    theme="solarized_dark"
                     width='670px'
                     height='700px'
                     showGutter={true}

@@ -4,7 +4,6 @@ import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
 import { v4 as uuid } from 'uuid'
 
-// TODO last pix functionnality
 
 class PageBuilder extends React.Component {
     constructor(props) {
@@ -41,15 +40,19 @@ class PageBuilder extends React.Component {
         return rearrangedContent
     }
 
-    buildPage(tutorials, introduction) {
+    buildPage(introduction, tutorials) {
         let pageSpace = 10,
             content = this.initializeContent(tutorials),
-            pages = []
+            pages = [],
+            sectionCounter = 1
         var currentPage = [<Introduction key={uuid()} content={introduction}></Introduction>]
 
-        function resetCurrentPage() {
+        function resetCurrentPage(last = false) {
+            let lastClassName = last?' last':''
+            console.log('last ?', last, 'Page :', pages.length + 1)
+
             pages.push(React.createElement("div", 
-                { className: "page", key: uuid() }, 
+                { className: `page${lastClassName}` , key: uuid() }, 
                 [
                     ...currentPage, 
                     <PageOrnements key={uuid()}></PageOrnements>,
@@ -60,7 +63,11 @@ class PageBuilder extends React.Component {
             pageSpace = 13
         }
         
+        console.log(content)
         content.forEach((part, i) => {
+            let last = i == content.length-1
+            console.log(i, last)
+            
             if (pageSpace >= 0) {
                 switch (Object.keys(part)[0]) {
                 
@@ -80,9 +87,10 @@ class PageBuilder extends React.Component {
                 
                     case 'sectionTitle': 
                         // pageSpace < 6 ? resetCurrentPage():null
+
                         currentPage.push(
                             <h3 key={uuid()} className="steps-title">
-                                <span>1</span>{part.sectionTitle}
+                                <span>{sectionCounter++}</span>{part.sectionTitle}
                                 <TitleOrnement></TitleOrnement>
                             </h3>
                         )
@@ -105,7 +113,11 @@ class PageBuilder extends React.Component {
                                 [...figures]
                             ))
                             figures = []
-                            reset?resetCurrentPage():null
+                            if (reset) {
+                                resetCurrentPage()
+                            } else if (reset && last) {
+                                resetCurrentPage(last)
+                            }
                         }
 
                         for (let j = pointer; j < steps.length; j++) {
@@ -159,7 +171,7 @@ class PageBuilder extends React.Component {
 
         return (
             <React.Fragment>
-                {this.buildPage(tutorials, introduction)}
+                {this.buildPage(introduction, tutorials)}
             </React.Fragment>
         )
     }

@@ -4,6 +4,14 @@
     flex-direction: row;
 }
 
+.ace_scrollbar-h {
+    display: none;
+}
+
+#ace_editor {
+    box-shadow: 0px 3px 10px 3px #1b4f5961;
+}
+
 .preview {
     width: 750px;
     transform: matrix(.7, 0, 0, .7, -112, -1750);
@@ -79,13 +87,17 @@ p.error {
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 10px !important;
-    background: #afafaf;   
+    background: #9ba8ac;   
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     border-radius: 10px !important;
-    background: rgb(109, 152, 163);
+    background: #2a5c65;
+}
+
+#ace_editor ::-webkit-scrollbar-thumb {
+    background-color: #2e8a79;
 }
 
 /* Handle on hover */
