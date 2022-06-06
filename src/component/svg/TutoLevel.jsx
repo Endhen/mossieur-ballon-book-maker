@@ -20,7 +20,9 @@ class TutoLevel extends React.Component {
 
         for (let i = 1; i <= 5; i++) {
             ballonLevel.push(
-            <svg key={ uuid() } width="50" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div key={ uuid() } className="level-ballon" width="50" height="50">
+                <span>{i}</span>
+                <svg key={ uuid() } width="50" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_414_967)">
                         <path
                             d="M11.109 14.1734C12.5322 15.9955 17.4313 14.3408 16.642 12.8306C15.3816 10.4192 11.8532 15.5995 9.83693 16.3545C7.82067 17.1096 5.04832 16.7737 6.81255 14.3409"
@@ -36,6 +38,7 @@ class TutoLevel extends React.Component {
                         </clipPath>
                     </defs>
                 </svg>
+            </div>
             )
         }
 
@@ -44,7 +47,7 @@ class TutoLevel extends React.Component {
 
     render() {
       return (
-        <div>
+        <div style={{ display: "flex" }}>
             { this.setBalloon() }
         </div>
       )

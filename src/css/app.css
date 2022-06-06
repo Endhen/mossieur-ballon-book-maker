@@ -14,7 +14,9 @@
 
 .preview {
     width: 750px;
-    transform: matrix(.7, 0, 0, .7, -112, -1750);
+    transform-origin: 0 0;
+    transform: matrix(.7, 0, 0, .7, 0, 0);
+    /* transform: matrix(1, 0, 0, 1, 0, 0); */
 }
 
 .preview-container {
@@ -80,20 +82,20 @@ p.error {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 15px;
     right: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    border-radius: 10px !important;
-    background: #9ba8ac;   
+    border-radius: 100px 0 0 100px !important;
+    background: #9ba8ac17;   
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px !important;
-    background: #2a5c65;
+    border-radius: 100px 0 0 100px !important;
+    background: white;
 }
 
 #ace_editor ::-webkit-scrollbar-thumb {

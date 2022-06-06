@@ -4,7 +4,6 @@ import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
 import { v4 as uuid } from 'uuid'
 
-
 class PageBuilder extends React.Component {
     constructor(props) {
         super(props)
@@ -25,6 +24,7 @@ class PageBuilder extends React.Component {
         return JSON.parse(JSON.stringify(content))
     }
 
+    // Return flattened JSON structure
     initializeContent(content) {
 
         let rearrangedContent  = []
@@ -41,124 +41,173 @@ class PageBuilder extends React.Component {
     }
 
     buildPage(introduction, tutorials) {
-        let pageSpace = 10,
+        let pageSpace = 9, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],
             sectionCounter = 1
         var currentPage = [<Introduction key={uuid()} content={introduction}></Introduction>]
 
-        function resetCurrentPage(last = false) {
-            let lastClassName = last?' last':''
-            console.log('last ?', last, 'Page :', pages.length + 1)
+        function commitPageToDocument() {
 
             pages.push(React.createElement("div", 
-                { className: `page${lastClassName}` , key: uuid() }, 
+                { className: `page` , key: uuid() }, 
                 [
                     ...currentPage, 
                     <PageOrnements key={uuid()}></PageOrnements>,
                     <span key={uuid()} className="page-number">{pages.length + 1}</span>
                 ]
             ))
-            currentPage = []
-            pageSpace = 13
+
+            currentPage = [] // Reinitialize current page state
+            pageSpace = 12 // Reinitialize page space
         }
         
-        console.log(content)
         content.forEach((part, i) => {
-            let last = i == content.length-1
-            console.log(i, last)
+            var isLastPart = i == content.length - 1,
+                partName = Object.keys(part)[0]
             
             if (pageSpace >= 0) {
-                switch (Object.keys(part)[0]) {
                 
-                    case 'introduction':
-                        let introduction = part.introduction 
-                        // pageSpace < 6 ? resetCurrentPage():null
-                        pageSpace -= 3
+                if (partName == 'introduction') {
+                    let introduction = part.introduction 
+                    // pageSpace < 6 ? commitPageToDocument():null
+                    pageSpace -= 3
 
-                        currentPage.push(React.createElement("div", 
-                            { className: "section-introduction", key: uuid() }, 
-                            [
-                                <h2 key={uuid()}>{introduction.title}</h2>,
-                                <p key={uuid()}>{introduction.text}</p>
-                            ]
-                        ))
-                        break
-                
-                    case 'sectionTitle': 
-                        // pageSpace < 6 ? resetCurrentPage():null
+                    currentPage.push(React.createElement("div", 
+                        { className: "section-introduction", key: uuid() }, 
+                        [
+                            <h2 key={uuid()}>{introduction.title}</h2>,
+                            <p key={uuid()}>{introduction.text}</p>
+                        ]
+                    ))
 
-                        currentPage.push(
-                            <h3 key={uuid()} className="steps-title">
-                                <span>{sectionCounter++}</span>{part.sectionTitle}
-                                <TitleOrnement></TitleOrnement>
-                            </h3>
-                        )
-                        break
-                
-                    case 'steps':
-                        let figures = [],
-                            pointer = 0,
-                            steps = part.steps,
-                            breakShift = 0,
-                            reset = i == content.length-1
+                    sectionCounter = 1
+                }
+            
+                if (partName == 'sectionTitle') { 
+                    // pageSpace < 6 ? commitPageToDocument():null
 
-                        function stepBreak(reset = true) {
-                            let classNameLast
-                            !reset?classNameLast = " last":classNameLast = ""
-                            // TODO Last class dosent work
+                    currentPage.push(
+                        <h3 key={uuid()} className="steps-title">
+                            <span>{sectionCounter++}</span>{part.sectionTitle}
+                            <TitleOrnement></TitleOrnement>
+                        </h3>
+                    )
 
+                }
+            
+                if (partName == 'steps') {
+                    var figures = [],
+                        lastFigures,
+                        addedFigures = 0,
+                        steps = part.steps,
+                        breakShift = 0
+
+                    function isLastStepPart() { // If there is no remaining steps to convert to figures, it is last step
+                        return 0 >= steps.length - addedFigures 
+                    }
+
+                    function commitToCurrentPage(figureClassName, figuresToCommit) {
+                        console.log(figureClassName, (figureClassName == "laststep"))
+                        if (!(figureClassName == "laststep")) {
                             currentPage.push(React.createElement("div", 
-                                { className: "steps" + classNameLast, key: uuid() }, 
-                                [...figures]
+                                { className: "steps" + figureClassName, key: uuid() }, 
+                                [...figuresToCommit]
                             ))
                             figures = []
-                            if (reset) {
-                                resetCurrentPage()
-                            } else if (reset && last) {
-                                resetCurrentPage(last)
-                            }
+
+                            commitPageToDocument()
+                        }
+                    }
+
+                    function defineClassName(figures) {
+                        let lastStepSectionClassName = isLastPart && isLastStepPart()?" last-step-section":"",
+                            lastStepPartClassName = isLastStepPart()?" last-step-part":"",
+                            finalStepsClassName = ''
+                        
+                        finalStepsClassName = ' final-' + (figures.length % 3) + '-' + figures.length
+
+                        if (figures.length > 9) {
+                            lastStepPartClassName = ""
                         }
 
-                        for (let j = pointer; j < steps.length; j++) {
+                        return lastStepSectionClassName + lastStepPartClassName + finalStepsClassName
+                    }
+                    
+                    function defineLayout(figures) {
 
-                            if (0 == ((j-breakShift) % 3)) { // Space took by a row of steps
+                        let className = defineClassName(figures)
+
+                        if(isLastStepPart() && (figures.length < 9)) {
+
+                            console.log('Last step section : Final layout')
+
+                            if (figures.length % 3 == 1) {
                                 pageSpace -= 3
-                            }
-                            
-                            let step = '<span>'+ (j+1-breakShift) +'</span>' + steps[j]
-                            
-                            if (pageSpace >= 0) {
-
-                                if (steps[j] == "break") {
-                                    stepBreak()
-                                    breakShift++
-                                } else {
-                                    figures.push(
-                                        <figure key={uuid()}>
-                                            {/* <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img> */}
-                                            <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img>
-                                            <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
-                                        </figure>
-                                    )
-                                    pointer++
-                                    
-                                }
                             } else {
-                                j--
-                                stepBreak()
+                                pageSpace = 3
                             }
+
+                            return className
+
+                        } else if (isLastStepPart()) {
+
+                            lastFigures = figures.splice(8, figures.length) // Cut figures in two groups 8 + rest
+
+                            // Commit the two group 
+                            commitToCurrentPage(' figures', figures) 
+                            commitToCurrentPage(defineClassName(lastFigures) + ' lastFigures', lastFigures)
+
+                            return "laststep" // Signal that it was the last step
+
                         }
 
-                        figures != []? stepBreak(reset): null
+                        return ""
+                    }
 
-                        break
-    
-                    default:
-                        break
+
+                    for (let j = figures.length; j < steps.length; j++) {
+
+                        if (0 == ((j-breakShift) % 3)) { // Space took by a row of steps
+                            pageSpace -= 3
+                        }
+                        
+                        let step = '<span>'+ (j+1-breakShift) +'</span>' + steps[j] // Add numerotation to the step text content 
+                        
+                        if (pageSpace >= 0) { // if the space took by a row of steps do not exced le page space
+                            
+                            if (steps[j] == "break") {
+                                defineLayout()
+                                breakShift++
+                            } else {
+                                console.log(j+1-breakShift, 'figure added')
+
+                                figures.push(
+                                    <figure key={uuid()}>
+                                        {/* <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img> */}
+                                        <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img>
+                                        <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
+                                    </figure>
+                                )
+
+                                addedFigures++
+                            }
+                        } else { // Not enough space
+                            console.log('Not enough space -> Page jump')
+                            j-- // We reset the loop we've done
+                            var className = defineLayout(figures)
+                            
+                            commitToCurrentPage(className, figures) // And push currentfigures to the currentPage to make space before restarting loop
+                        }
+                    }
+
+                    if (figures != []) {
+                            // Commit all added figures
+                            var className = defineLayout(figures)
+                            commitToCurrentPage(className, figures)
+
+                    }
                 }
-            } else {
-                // resetCurrentPage(true)
             }
         })
 

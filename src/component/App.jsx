@@ -10,23 +10,29 @@ import '../css/app.css'
 import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
-import content from '../content/tutorials/content.json'
-import template from '../content/template/template.json'
+import content from '../content/tutorials/content-fr.json'
+import template from '../content/template/template-fr.json'
 
 import "ace-builds/src-noconflict/mode-javascript"
 import 'ace-builds/src-noconflict/theme-solarized_dark';
 
 // TODO Last pix functionnality
-// TODO Functionnality Break
-// TODO Functionnality Superimposed
-// * Try every steps, title and introduction block configuration
-// ! Template breaks if we add too many steps
-// ! Section counter dosent reset
+// TODO Functionnality Break : If some text really need to be long
 
-// TODO Save changements in json file
-// TODO Template JSON edition
-// TODO Integrate differetns languages with tabs
-// TODO Mode : PDF / Book 
+// * Try every steps, title and introduction block configuration : Title in last, sub transition in last, Ornement not hiding anything in some configurations
+
+// TODO Integrate differents languages with tabs
+// TODO Custom form to add differents elements
+// TODO Hover function to perform actions on items : remove, uptade, add to left / right
+// TODO Output mode : PDF / Book / Web article / JSON / Email Banner or PNG ? 
+// TODO Add config file to specify assets emplacement on the web site (Do not even need locals files, we get numbers from website)
+// TODO Input mode : JSON / Files / Forms
+// TODO Introduction size
+// TODO Last sentence
+
+// Super imposed Title
+// JSON to YAML : https://medium.com/@valentin.shamsnejad/how-to-add-yaml-syntax-validation-to-ace-editor-6db1dff4ab1b
+// Template JSON edition
 
 
 class App extends React.Component {
@@ -99,23 +105,25 @@ class App extends React.Component {
 
                         <img className="cover" src={require("../content/tutorials/cover.webp")} alt="Image de couverture"></img>
                         <section className="reminder">
-                            <PlayButton></PlayButton>
+                            <a href={content.cover.links.youtube} target="_blank">
+                                <PlayButton></PlayButton>
+                            </a>
                             <p>
                                 {template.reminder[0]}  
-                                <a href={content.cover.links.tutorial.link}>{content.cover.links.tutorial.title}</a>
+                                <a href={content.cover.links.tutorial.link} target="_blank">{content.cover.links.tutorial.title}</a>
                                 {template.reminder[1]}
-                                <a href={content.cover.links.youtube}>
+                                <a href={content.cover.links.youtube} target="_blank">
                                 {template.reminder[2]}</a>
                             </p>
                         </section>
 
                         <section className="requirements">
                             <div className="difficulty">
-                                <strong data-level={content.cover.level}>{template.title.level}</strong>
+                                <strong data-level={content.cover.level}>{template.titles.level}</strong>
                                 <TutoLevel level={content.cover.level}></TutoLevel>
                             </div>
                             <div className="equipment">
-                                <strong>{template.title.equipment}</strong>
+                                <strong>{template.titles.equipment}</strong>
                                 <ul>
                                     {content.cover.required.equipment.map((e, i)=> {
                                         return (<li key={i} data-quantity={e.quantity}>{e.object}</li>)
@@ -123,10 +131,10 @@ class App extends React.Component {
                                 </ul>
                             </div>
                             <div className="skills">
-                                <strong>{template.skills}</strong>
+                                <strong>{template.titles.skills}</strong>
                                 <ul>
                                     {content.cover.required.skills.map((skill, i)=> {
-                                        return (<li key={i}><a href={skill.link}>{skill.title}</a></li>)
+                                        return (<li key={i}><a href={skill.link} target="_blank">{skill.title}</a></li>)
                                     })}
                                 </ul>
                             </div>
@@ -147,7 +155,7 @@ class App extends React.Component {
                 <AceEditor
                     mode="javascript"
                     theme="solarized_dark"
-                    width='670px'
+                    width='100%'
                     height='700px'
                     showGutter={true}
                     highlightActiveLine={true}
