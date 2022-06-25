@@ -41,7 +41,7 @@ class PageBuilder extends React.Component {
     }
 
     buildPage(introduction, tutorials) {
-        let pageSpace = 9, // Starting page space minus the introduction section
+        let pageSpace = 12, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],
             sectionCounter = 1
@@ -138,7 +138,7 @@ class PageBuilder extends React.Component {
 
                         let className = defineClassName(figures)
 
-                        if(isLastStepPart() && (figures.length < 9)) {
+                        if (isLastStepPart() && (figures.length < 9)) {
 
                             console.log('Last step section : Final layout')
 
@@ -177,15 +177,18 @@ class PageBuilder extends React.Component {
                         if (pageSpace >= 0) { // if the space took by a row of steps do not exced le page space
                             
                             if (steps[j] == "break") {
-                                defineLayout()
+                                console.warn('break')
+                                commitToCurrentPage(" ", figures)
                                 breakShift++
+                                console.log("Page space", pageSpace)
                             } else {
                                 console.log(j+1-breakShift, 'figure added')
+                                console.log("Page space", pageSpace)
 
                                 figures.push(
                                     <figure key={uuid()}>
-                                        {/* <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img> */}
-                                        <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img>
+                                        <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img>
+                                        {/* <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img> */}
                                         <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                     </figure>
                                 )
@@ -195,16 +198,15 @@ class PageBuilder extends React.Component {
                         } else { // Not enough space
                             console.log('Not enough space -> Page jump')
                             j-- // We reset the loop we've done
-                            var className = defineLayout(figures)
                             
-                            commitToCurrentPage(className, figures) // And push currentfigures to the currentPage to make space before restarting loop
+                            commitToCurrentPage(defineLayout(figures), figures) // And push currentfigures to the currentPage to make space before restarting loop
                         }
                     }
 
                     if (figures != []) {
                             // Commit all added figures
-                            var className = defineLayout(figures)
-                            commitToCurrentPage(className, figures)
+                            console.log("Figures to add ", figures)
+                            commitToCurrentPage(defineLayout(figures), figures)
 
                     }
                 }

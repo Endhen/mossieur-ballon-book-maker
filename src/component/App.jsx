@@ -6,12 +6,12 @@ import MainTitleOrnement from './svg/MainTitleOrnement.jsx'
 import PageBuilder from './sections/PageBuilder.jsx'
 import AceEditor from "react-ace"
 
-import '../css/app.css'
+// import '../css/app.css'
 import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
-import content from '../content/tutorials/content-fr.json'
-import template from '../content/template/template-fr.json'
+import content from '../content/tutorials/content-en.json'
+import template from '../content/template/template-en.json'
 
 import "ace-builds/src-noconflict/mode-javascript"
 import 'ace-builds/src-noconflict/theme-solarized_dark';
@@ -105,7 +105,7 @@ class App extends React.Component {
 
                         <img className="cover" src={require("../content/tutorials/cover.webp")} alt="Image de couverture"></img>
                         <section className="reminder">
-                            <a href={content.cover.links.youtube} target="_blank">
+                            <a href={content.cover.links.tutorial.link} target="_blank">
                                 <PlayButton></PlayButton>
                             </a>
                             <p>
@@ -119,11 +119,11 @@ class App extends React.Component {
 
                         <section className="requirements">
                             <div className="difficulty">
-                                <strong data-level={content.cover.level}>{template.titles.level}</strong>
+                                <h3 data-level={content.cover.level}>{template.titles.level}</h3>
                                 <TutoLevel level={content.cover.level}></TutoLevel>
                             </div>
                             <div className="equipment">
-                                <strong>{template.titles.equipment}</strong>
+                                <h3>{template.titles.equipment}</h3>
                                 <ul>
                                     {content.cover.required.equipment.map((e, i)=> {
                                         return (<li key={i} data-quantity={e.quantity}>{e.object}</li>)
@@ -131,7 +131,7 @@ class App extends React.Component {
                                 </ul>
                             </div>
                             <div className="skills">
-                                <strong>{template.titles.skills}</strong>
+                                <h3>{template.titles.skills}</h3>
                                 <ul>
                                     {content.cover.required.skills.map((skill, i)=> {
                                         return (<li key={i}><a href={skill.link} target="_blank">{skill.title}</a></li>)

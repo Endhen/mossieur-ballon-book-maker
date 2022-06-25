@@ -5,50 +5,30 @@
 
 /* --- Sailboat --- */
 
-/* .last-sentence {
+.last-sentence {
     text-align: center;
     font-size: 22px;
     color: #5d84b8;
     margin: 15px 0 0;
 }
 
+.last-sentence span {
+    display: none !important;
+}
+
 
 .steps-title,
 .text-editor,
-.section-introduction,
-.page:nth-last-child(2) figure:last-child span,
-.page:last-child {
+.section-introduction {
     display: none;
 }
 
-.page:nth-last-child(2) figure:last-child {
-    min-width: 100% !important;
-}
 
-.page:nth-last-child(2) figure:last-child img {
-    height: 330px !important;
+.introduction {
+    padding: 20px 0 40px !important;
 }
 
 
-.page:nth-last-child(2) figure {
-    position: relative;
-    z-index: 2;
-}
-.page:nth-last-child(2) figure:last-child {
-    position: relative;
-    z-index: 1;
-}
-
-.page:nth-last-child(2) figure:last-child:before {
-    position: absolute;
-    content: '';
-    z-index: -1;
-    top: -100px;
-    left: -100px;
-    width: 800px;
-    height: 800px;
-    background: url('/src/content/template/assets/confetttis.png');
-} */
 
 
 /* .introduction {
@@ -202,7 +182,7 @@ h1 .subtitle {
 .requirements li:last-of-type { margin-bottom: 0; }
 .requirements li { margin-bottom: 10px; }
 
-strong {
+h3 {
     display: inline-block;
     margin-bottom: 25px;
     font-size: 32px;
@@ -464,7 +444,7 @@ ul {
 }
 
 .page figure img {
-    width: 100%;
+    min-width: 100%;
     height: 140px;
     object-fit: cover;
     margin-bottom: 10px;
