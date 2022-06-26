@@ -5,13 +5,16 @@ import PlayButton from './svg/PlayButton.jsx'
 import MainTitleOrnement from './svg/MainTitleOrnement.jsx'
 import PageBuilder from './sections/PageBuilder.jsx'
 import AceEditor from "react-ace"
+import Select from 'react-select';
 
 import '../css/app.css'
 import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
-import content from '../content/tutorials/content-fr.json'
-import template from '../content/template/template-fr.json'
+import contentFR from '../content/tutorials/content-fr.json'
+import contentEN from '../content/tutorials/content-en.json'
+import templateFR from '../content/template/template-fr.json'
+import templateEN from '../content/template/template-en.json'
 
 import "ace-builds/src-noconflict/mode-javascript"
 import 'ace-builds/src-noconflict/theme-solarized_dark';
@@ -34,6 +37,15 @@ import 'ace-builds/src-noconflict/theme-solarized_dark';
 // JSON to YAML : https://medium.com/@valentin.shamsnejad/how-to-add-yaml-syntax-validation-to-ace-editor-6db1dff4ab1b
 // Template JSON edition
 
+var content = {
+        fr: contentFR,
+        en: contentEN
+    },
+    template = {
+        fr: templateFR,
+        en: templateEN
+    }
+
 
 class App extends React.Component {
     
@@ -41,8 +53,10 @@ class App extends React.Component {
         super(props)
 
         this.state = {
+            language: 'fr',
+            template: template,
             content: content,
-            textContent: JSON.stringify(content, null, 4),
+            textContent: content,
             JSONStatus: {
                 isValid: true,
                 errorMessage: ""
@@ -64,12 +78,20 @@ class App extends React.Component {
         }.bind(this)
 
         try {
-            this.setState({
-                content: JSON.parse(input),
-                JSONStatus: {
-                    isValid: true
+            var content
+
+            if (this.state.language = "fr") {
+                content = {
+                    fr: JSON.parse(input),
+                    en: this.state.content.en
                 }
-            })
+            } else {
+                content = {
+                    fr: this.state.content.fr,
+                    en: JSON.parse(input)
+                }
+            }
+
         } catch (e) {
             if (e instanceof SyntaxError) {
                 printError(e, true)
@@ -79,14 +101,31 @@ class App extends React.Component {
         }
 
         this.setState({
+            content: content,
+            JSONStatus: {
+                isValid: true
+            },
             textContent: input
         })
-        
+    }
+
+    changeLanguage(languageCode) {
+        console.log(this)
+        this.setState({
+            language: languageCode.value,
+        })
     }
     
     render() {
-        let title = this.state.content.cover.title
-        let content = this.state.content
+
+        let title = this.state.content[this.state.language].cover.title,
+            content = this.state.content[this.state.language],
+            template = this.state.template[this.state.language]
+
+        const options = [
+            { value: 'fr', label: 'Français' },
+            { value: 'en', label: 'Anglais' }
+        ];
 
         return (
             <React.Fragment>
@@ -162,10 +201,20 @@ class App extends React.Component {
                     onChange={this.contentUpdate}
                     name="ace_editor"
                     editorProps={{ $blockScrolling: true }}
-                    value={ this.state.textContent }
+                    value={ JSON.stringify(this.state.textContent[this.state.language], null, 4) }
                     setOptions={{
                         tabSize: 4,
                     }}
+                />
+                <label for="language">Langage</label>
+
+                <Select
+                    onChange={(languageCode) => {
+                        this.setState({
+                            language: languageCode.value,
+                        })
+                    }}
+                    options={options}
                 />
             </div>
             </React.Fragment>

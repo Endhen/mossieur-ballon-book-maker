@@ -80,6 +80,10 @@ p.error {
 }
 
 
+label[for="language"] {
+    margin: 20px 0 10px;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
