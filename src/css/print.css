@@ -224,6 +224,10 @@ ul {
     color: #2C7F8D;
 }
 
+.skills {
+    margin-top: 20px;
+}
+
 .skills, ul {
     width: 100%;
 }

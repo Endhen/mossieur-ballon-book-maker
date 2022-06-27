@@ -27,7 +27,7 @@ import 'ace-builds/src-noconflict/theme-solarized_dark';
 // TODO Integrate differents languages with tabs
 // TODO Custom form to add differents elements
 // TODO Hover function to perform actions on items : remove, uptade, add to left / right
-// TODO Output mode : PDF / Book / Web article / JSON / Email Banner or PNG ? 
+// TODO Output mode : PDF / Book / Web article ? 
 // TODO Add config file to specify assets emplacement on the web site (Do not even need locals files, we get numbers from website)
 // TODO Input mode : JSON / Files / Forms
 // TODO Introduction size
@@ -114,6 +114,15 @@ class App extends React.Component {
         this.setState({
             language: languageCode.value,
         })
+    }
+
+    saveImages() {
+    }
+
+    uploadImages() {
+    }
+
+    uploadJSON() {
     }
     
     render() {
@@ -218,7 +227,8 @@ class App extends React.Component {
                 />
                 <a  class="btn" 
                     href={"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.textContent[this.state.language], null, 4)) } 
-                    download={ "content-" + this.state.language + ".js"}>Télécharger</a>
+                    download={ "content-" + this.state.language + ".js"}> Télécharger JSON
+                </a>
             </div>
             </React.Fragment>
         )

@@ -2,6 +2,7 @@ import React from "react"
 import Introduction from './Introduction.jsx'
 import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
+import placeholder from '../../content/template/assets/placeholder.svg'
 import { v4 as uuid } from 'uuid'
 
 class PageBuilder extends React.Component {
@@ -181,14 +182,27 @@ class PageBuilder extends React.Component {
                                 breakShift++
                             } else {
                                 // console.log(j+1-breakShift, 'figure added')
+                                var img
 
-                                figures.push(
-                                    <figure key={uuid()}>
-                                        {/* <img src={require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')} alt=""></img> */}
-                                        <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img>
-                                        <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
-                                    </figure>
-                                )
+                                try { // Check if image exist 
+                                    img = require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')
+
+                                    figures.push(
+                                        <figure key={uuid()}>
+                                            <img src={img} alt=""></img>
+                                            {/* <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img> */}
+                                            <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
+                                        </figure>
+                                    )
+
+                                } catch { // or create from a placeholder
+                                    figures.push(
+                                        <figure key={uuid()}>
+                                            <img src={placeholder} alt=""></img>
+                                            <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
+                                        </figure>
+                                    )
+                                }
 
                                 addedFigures++
                             }
