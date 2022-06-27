@@ -216,6 +216,9 @@ class App extends React.Component {
                     }}
                     options={options}
                 />
+                <a  class="btn" 
+                    href={"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.textContent[this.state.language], null, 4)) } 
+                    download={ "content-" + this.state.language + ".js"}>Télécharger</a>
             </div>
             </React.Fragment>
         )

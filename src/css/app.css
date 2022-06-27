@@ -84,6 +84,19 @@ label[for="language"] {
     margin: 20px 0 10px;
 }
 
+.btn {
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin-top: 15px;
+
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0px 1px 4px 2px #1b4f5957;
+    background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 156, 147) 89%);
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
