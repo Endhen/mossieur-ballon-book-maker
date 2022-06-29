@@ -35,6 +35,10 @@ module.exports = {
             type: 'json', // Required by Webpack v4
             use: 'yaml-loader'
         },
+        {
+            test: /\.rcss/,
+            type: 'asset/source'
+        }
         // {
         //     test: /\.(webp)$/i,
         //     use: [

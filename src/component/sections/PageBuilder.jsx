@@ -238,11 +238,14 @@ class PageBuilder extends React.Component {
                                 breakShift++
                             } else {
                                 // console.log(j+1-breakShift, 'figure added')
-                                let img,
-                                    imgData,
-                                    id = (j + 1).toString().padStart(2,0)
 
                                 try { // Check if image exist 
+                                    let figcaptionClassName
+
+                                    if ((part.steps.length - addedFigures) == 1) {
+                                        figcaptionClassName = "last-sentence"
+                                        console.log(figcaptionClassName, step)
+                                    }
 
                                     figures.push(
                                         <figure key={uuid()}>

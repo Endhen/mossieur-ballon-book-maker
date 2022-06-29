@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initiation à la sculpture sur ballon 23 – Le dinosaure</title>
-    <style class="app-css">
+
 #app {
     display: flex;
     flex-direction: row;
@@ -114,6 +107,10 @@ label[for="language"] {
     background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
 }
 
+.editor-vue {
+    display: none;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
@@ -140,10 +137,3 @@ label[for="language"] {
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(109, 152, 163);
 }
-    </style>
-</head>
-<body>
-    <div id="app"></div>
-    <script src="./index.js"></script>
-</body>
-</html>

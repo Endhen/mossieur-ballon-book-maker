@@ -7,7 +7,7 @@ import PageBuilder from './sections/PageBuilder.jsx'
 import AceEditor from "react-ace"
 import Select from 'react-select';
 
-import '../css/app.css'
+// import '../css/app.css'
 import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
@@ -60,6 +60,7 @@ class App extends React.Component {
             content: content,
             textContent: content,
             cover: cover,
+            printMode: false,
             JSONStatus: {
                 isValid: true,
                 errorMessage: ""
@@ -119,23 +120,35 @@ class App extends React.Component {
         })
     }
 
+    togglePrintMode() {
+
+        if (this.state.printMode == false) {
+            console.log("NO print")
+            document.querySelector("style.app-css").remove()
+            document.querySelector(".text-editor").style.display = "none"
+
+            this.setState({
+                printMode: true
+            })
+
+        } else { 
+            console.log("YES print")
+            let style = require("../css/app.rcss")
+
+            document.head.insertAdjacentHTML("beforeend", `<style class='app-css'>${style}</style>`)
+            document.querySelector(".text-editor").style.display = "block"
+
+            this.setState({
+                printMode: false
+            })
+        }
+    }
+
     saveImages() {
 
     }
 
     uploadImages() {
-        const pickerOpts = {
-            types: [
-                {
-                    description: '.webp',
-                    accept: {
-                        'image/*': ['.webp']
-                    }
-                },
-            ],
-            excludeAcceptAllOption: true,
-            multiple: true
-        };
 
         async function buildProject() {
 
@@ -265,6 +278,14 @@ class App extends React.Component {
             { value: 'en', label: 'Anglais' }
         ];
 
+        var { selectedOption } = this.state.language
+
+        if (this.state.language == "fr") {
+            selectedOption = {value: "fr", label : "Français"}
+        } else {
+            selectedOption = {value: "en", label : "Anglais"}
+        }
+
         return (
             <React.Fragment>
             <div className="preview-container">
@@ -296,11 +317,11 @@ class App extends React.Component {
 
                         <section className="requirements">
                             <div className="difficulty">
-                                <strong data-level={content.cover.level}>{template.titles.level}</strong>
+                                <h3 data-level={content.cover.level}>{template.titles.level}</h3>
                                 <TutoLevel level={content.cover.level}></TutoLevel>
                             </div>
                             <div className="equipment">
-                                <strong>{template.titles.equipment}</strong>
+                                <h3>{template.titles.equipment}</h3>
                                 <ul>
                                     {content.cover.required.equipment.map((e, i)=> {
                                         return (<li key={i} data-quantity={e.quantity}>{e.object}</li>)
@@ -308,7 +329,7 @@ class App extends React.Component {
                                 </ul>
                             </div>
                             <div className="skills">
-                                <strong>{template.titles.skills}</strong>
+                                <h3>{template.titles.skills}</h3>
                                 <ul>
                                     {content.cover.required.skills.map((skill, i)=> {
                                         return (<li key={i}><a href={skill.link} target="_blank">{skill.title}</a></li>)
@@ -347,6 +368,7 @@ class App extends React.Component {
                 <label htmlFor="language">Langage</label>
 
                 <Select
+                    value={selectedOption}
                     onChange={(languageCode) => {
                         this.setState({
                             language: languageCode.value,
@@ -357,8 +379,12 @@ class App extends React.Component {
                 <div>
                     <button onClick={() => { this.uploadImages() }} className="btn btn-blue">Load project</button>
                     <button className="btn">Save project</button>
+                    <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
                 </div>
+
+                
             </div>
+            <button className='editor-vue' onClick={() => { this.togglePrintMode() }}>Editor</button>
             </React.Fragment>
         )
     }

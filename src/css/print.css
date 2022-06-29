@@ -3,57 +3,34 @@
 
 
 
-/* --- Sailboat --- */
+.editor-vue {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    padding: 10px 30px;
 
-/* .last-sentence {
-    text-align: center;
-    font-size: 22px;
-    color: #5d84b8;
-    margin: 15px 0 0;
+    border: 3px solid rgb(27, 79, 89);
+    border-radius: 10px;
+    margin: 10px;
+
+    color: white;
+    font-family: 'Nunito';
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0px 1px 4px 2px #1b4f5957;
+    color: rgb(27, 79, 89);
+    background: white;
+    
+    cursor: pointer;
 }
 
-
-.steps-title,
-.text-editor,
-.section-introduction,
-.page:nth-last-child(2) figure:last-child span,
-.page:last-child {
-    display: none;
+.editor-vue:hover {
+    opacity: 1;
 }
 
-.page:nth-last-child(2) figure:last-child {
-    min-width: 100% !important;
-}
-
-.page:nth-last-child(2) figure:last-child img {
-    height: 330px !important;
-}
-
-
-.page:nth-last-child(2) figure {
-    position: relative;
-    z-index: 2;
-}
-.page:nth-last-child(2) figure:last-child {
-    position: relative;
-    z-index: 1;
-}
-
-.page:nth-last-child(2) figure:last-child:before {
-    position: absolute;
-    content: '';
-    z-index: -1;
-    top: -100px;
-    left: -100px;
-    width: 800px;
-    height: 800px;
-    background: url('/src/content/template/assets/confetttis.png');
-} */
-
-
-/* .introduction {
-    margin: 69px 0 58px;
-} */
 
 figcaption {
     background: white;
@@ -202,7 +179,7 @@ h1 .subtitle {
 .requirements li:last-of-type { margin-bottom: 0; }
 .requirements li { margin-bottom: 10px; }
 
-strong {
+h3 {
     display: inline-block;
     margin-bottom: 25px;
     font-size: 32px;
@@ -350,7 +327,7 @@ ul {
 }
 
 .last-step-part figure:nth-last-child(1) img {
-    height: 390px;
+    min-height: 390px;
 }
 
 /* Final */
@@ -370,7 +347,7 @@ ul {
 .last-step-part.final-0-3 figure:nth-last-child(3),
 .last-step-part.final-0-6 figure:nth-last-child(3) {
     grid-column: marge / middle;
-    min-width: 100%;
+    min-width: 95%;
 }
 
 .last-step-part.final-0-3 figure:nth-last-child(2),
@@ -403,6 +380,7 @@ ul {
 .last-step-part.final-2-2 figure:nth-last-child(2),
 .last-step-part.final-2-5 figure:nth-last-child(2)  {
     display: flex;
+    flex-direction: row !important;
     gap: 20px; }
 .last-step-part.final-2-2 figure:nth-last-child(2)  img {
     height: 200px;
@@ -428,6 +406,7 @@ ul {
 
 .last-step-part.final-2-5 figure:nth-last-child(2) img {
     height: 200px;
+    width: unset;
     margin-bottom: 25px;
 }
 
@@ -462,6 +441,8 @@ ul {
 
 
 .page figure {
+    display: flex;
+    flex-direction: column;
     max-width: 250px;
     margin: 0;
     break-inside: avoid;
@@ -476,7 +457,7 @@ ul {
     background-color: #529fac21;
 }
 
-figcaption {
+figcaption:not(".last-step-part figure:last-child") {
     font-size: 16px;
     line-height: 24px;
     padding: 0 10px;
@@ -498,6 +479,17 @@ figcaption span {
 
     color: white;
     background-color: #2C7F8D;
+}
+
+.last-step-part figure:last-child {
+    text-align: center;
+    font-size: 22px !important;
+    color: #5d84b8;
+    margin: 15px 0 0;
+}
+
+.last-step-part figure:last-child span {
+    display: none !important;
 }
 
 .page > svg {
