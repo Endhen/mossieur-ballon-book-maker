@@ -5,6 +5,58 @@ import PageOrnements from '../svg/PageOrnements.jsx'
 import placeholder from '../../content/template/assets/placeholder.svg'
 import { v4 as uuid } from 'uuid'
 
+function getBase64Image(img) {
+
+    var canvas = document.createElement("canvas"),
+        myImage = new Image(175, 98)
+        myImage.src = img
+
+    canvas.width = 175;
+    canvas.height = 98;
+
+    function drawTest() {
+        var ctx = canvas.getContext("2d");        
+        ctx.drawImage(this, 0, 0, 175, 98); 
+    }
+
+    myImage.onload = drawTest
+
+
+    test()
+    var dataURL = canvas.toDataURL(img.format);
+
+    var imageTest = new Image(175, 98)
+    imageTest.src = dataURL
+    // document.body.appendChild(myImage);
+    document.body.appendChild(imageTest);
+
+    return dataURL;
+    // return dataURL.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
+}
+
+function test() {
+
+    var canvas = document.createElement("canvas"),
+        myImage = new Image(175, 98)
+        myImage.src = require('../../content/tutorials/steps/step01.webp') 
+
+    canvas.width = 175;
+    canvas.height = 98;
+
+    function draw() {
+        var ctx = canvas.getContext("2d");        
+        ctx.drawImage(this, 0, 0, 175, 98); 
+    }
+
+    myImage.onload = draw
+
+    var dataURL = canvas.toDataURL("image/webp");
+    // console.log(dataURL)
+
+    document.body.appendChild(canvas);
+}
+
+
 class PageBuilder extends React.Component {
     constructor(props) {
         super(props)
@@ -40,6 +92,7 @@ class PageBuilder extends React.Component {
 
         return rearrangedContent
     }
+
 
     buildPage(introduction, tutorials) {
         let pageSpace = 9, // Starting page space minus the introduction section
@@ -182,20 +235,26 @@ class PageBuilder extends React.Component {
                                 breakShift++
                             } else {
                                 // console.log(j+1-breakShift, 'figure added')
-                                var img
+                                let img,
+                                    imgData,
+                                    id = (j + 1).toString().padStart(2,0)
 
                                 try { // Check if image exist 
-                                    img = require('../../content/tutorials/steps/step' + (j + 1).toString().padStart(2,0) + '.webp')
+                                    img = require('../../content/tutorials/steps/step' + id + '.webp')
+                                    imgData = getBase64Image(img);
+                                    localStorage.setItem("step" + id, imgData);
 
                                     figures.push(
                                         <figure key={uuid()}>
-                                            <img src={img} alt=""></img>
-                                            {/* <img src={require('../../content/tutorials/steps/step02.webp')} alt=""></img> */}
+                                            <img src={imgData} alt=""></img>
+                                            {/* <img src={"data:image/webp;base64," + imgData} alt=""></img> */}
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                         </figure>
                                     )
 
-                                } catch { // or create from a placeholder
+                                } catch (e){ // or create from a placeholder
+
+                                    // console.warn(e)
                                     figures.push(
                                         <figure key={uuid()}>
                                             <img src={placeholder} alt=""></img>

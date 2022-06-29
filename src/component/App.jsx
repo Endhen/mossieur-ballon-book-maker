@@ -44,7 +44,8 @@ var content = {
     template = {
         fr: templateFR,
         en: templateEN
-    }
+    },
+    fileHandle
 
 
 class App extends React.Component {
@@ -105,7 +106,7 @@ class App extends React.Component {
             JSONStatus: {
                 isValid: true
             },
-            textContent: input
+            textContent: content
         })
     }
 
@@ -117,12 +118,51 @@ class App extends React.Component {
     }
 
     saveImages() {
+
     }
 
     uploadImages() {
+
     }
 
     uploadJSON() {
+
+        const pickerOpts = {
+            types: [
+                {
+                    description: 'json',
+                    accept: {
+                        'application/*': ['.json']
+                    }
+                },
+            ],
+            excludeAcceptAllOption: true,
+            multiple: false
+        };
+
+        async function getText() {
+            
+            [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+            let fileData = await fileHandle.getFile();
+            let text = await fileData.text();
+
+            let content = {
+                fr: JSON.parse(text),
+                en: this.state.content.en
+            }
+
+            this.setState({
+                content: content,
+                JSONStatus: {
+                    isValid: true
+                },
+                textContent: content
+            })
+        } 
+
+        let JSONContent = getText.bind(this)
+        JSONContent()
+
     }
     
     render() {
@@ -215,7 +255,7 @@ class App extends React.Component {
                         tabSize: 4,
                     }}
                 />
-                <label for="language">Langage</label>
+                <label htmlFor="language">Langage</label>
 
                 <Select
                     onChange={(languageCode) => {
@@ -225,10 +265,13 @@ class App extends React.Component {
                     }}
                     options={options}
                 />
-                <a  class="btn" 
+                <div>
+                <a  className="btn" 
                     href={"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.textContent[this.state.language], null, 4)) } 
-                    download={ "content-" + this.state.language + ".js"}> Télécharger JSON
+                    download={ "content-" + this.state.language + ".json"}> Télécharger JSON
                 </a>
+                <button onClick={() => { this.uploadJSON() }} className="btn"> Upload JSON</button>
+                </div>
             </div>
             </React.Fragment>
         )

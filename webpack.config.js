@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebPlugin = require("html-webpack-plugin");
+const { NonceProvider } = require("react-select");
 
 module.exports = {
     entry: "./src/index.js",
@@ -33,7 +34,19 @@ module.exports = {
             test: /\.ya?ml$/,
             type: 'json', // Required by Webpack v4
             use: 'yaml-loader'
-        }
+        },
+        // {
+        //     test: /\.(webp)$/i,
+        //     use: [
+        //     {
+        //         loader: 'url-loader',
+        //         options: {
+        //             limit: false,
+        //             mimetype: 'image/webp',
+        //         },
+        //     },
+        //     ],
+        // },
     ]
     },
   plugins: [new HtmlWebPlugin({ template: "./src/index.html" })],
