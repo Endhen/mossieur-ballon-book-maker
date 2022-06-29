@@ -103,6 +103,10 @@ label[for="language"] {
     cursor: pointer;
 }
 
+.btn-blue {
+    background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 15px;

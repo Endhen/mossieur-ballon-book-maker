@@ -11,6 +11,7 @@ import '../css/app.css'
 import '../css/print.css'
 import logo from '../content/template/assets/Logo.png' 
 
+import cover from '../content/tutorials/cover.webp'
 import contentFR from '../content/tutorials/content-fr.json'
 import contentEN from '../content/tutorials/content-en.json'
 import templateFR from '../content/template/template-fr.json'
@@ -58,6 +59,7 @@ class App extends React.Component {
             template: template,
             content: content,
             textContent: content,
+            cover: cover,
             JSONStatus: {
                 isValid: true,
                 errorMessage: ""
@@ -122,6 +124,92 @@ class App extends React.Component {
     }
 
     uploadImages() {
+        const pickerOpts = {
+            types: [
+                {
+                    description: '.webp',
+                    accept: {
+                        'image/*': ['.webp']
+                    }
+                },
+            ],
+            excludeAcceptAllOption: true,
+            multiple: true
+        };
+
+        async function buildProject() {
+
+            const dirHandle = await window.showDirectoryPicker()
+            const project = {
+                name: "",
+                content: {
+                    fr: "",
+                    en: "",
+                },
+                cover: "",
+                pictures: []
+            }
+            const regexStep = new RegExp("step[0-9]{2}\.webp")
+
+            async function* getFilesRecursively (entry) {
+                if (entry.kind === 'file') {
+                    const file = await entry.getFile();
+
+                    if (file !== null) {
+                        let file = await entry.getFile()
+
+                        if (file.type == "application/json") {
+
+                             let json = await file.text()
+
+                            if (file.name == "content-fr.json") {
+                                project.content.fr = JSON.parse(json)
+                            } else {
+                                project.content.en = JSON.parse(json)
+                            }
+
+                        } else if (file.type =="image/webp") {
+
+                            if(regexStep.test(file.name)) {
+                                project.pictures[parseInt(file.name.match("[0-9]{2}")[0], 10) - 1] = URL.createObjectURL(file)
+                            } else if (file.name == "cover.webp") {
+                                project.cover = URL.createObjectURL(file)
+                            }
+                        }
+
+                        yield entry.name
+                    }
+                } else if (entry.kind === 'directory') {
+
+                    if (entry.name != "steps") {
+                        project.name = entry.name
+                    }
+
+                    for await (const handle of entry.values()) {
+                        yield* getFilesRecursively(handle);
+                    }
+                }
+            }
+
+            for await (const fileHandle of getFilesRecursively(dirHandle)) {
+                console.log(fileHandle);
+            }
+
+            console.log(await project.pictures)
+            this.setState({
+                content: project.content,
+                JSONStatus: {
+                    isValid: true
+                },
+                textContent: project.content,
+                pictures: project.pictures,
+                cover: project.cover
+            })
+
+        } 
+
+        let loadProject = buildProject.bind(this)
+        loadProject()
 
     }
 
@@ -169,7 +257,8 @@ class App extends React.Component {
 
         let title = this.state.content[this.state.language].cover.title,
             content = this.state.content[this.state.language],
-            template = this.state.template[this.state.language]
+            template = this.state.template[this.state.language],
+            pictures = this.state.pictures
 
         const options = [
             { value: 'fr', label: 'Français' },
@@ -191,7 +280,7 @@ class App extends React.Component {
                             </h1>
                         </header>
 
-                        <img className="cover" src={require("../content/tutorials/cover.webp")} alt="Image de couverture"></img>
+                        <img className="cover" src={this.state.cover} alt="Image de couverture"></img>
                         <section className="reminder">
                             <a href={content.cover.links.youtube} target="_blank">
                                 <PlayButton></PlayButton>
@@ -234,7 +323,7 @@ class App extends React.Component {
                         </section>
                     </div>
 
-                    <PageBuilder content={content}></PageBuilder>
+                    <PageBuilder content={content} pictures={pictures}></PageBuilder>
                 </div>
             </div>
             <div className="text-editor">
@@ -266,11 +355,8 @@ class App extends React.Component {
                     options={options}
                 />
                 <div>
-                <a  className="btn" 
-                    href={"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.textContent[this.state.language], null, 4)) } 
-                    download={ "content-" + this.state.language + ".json"}> Télécharger JSON
-                </a>
-                <button onClick={() => { this.uploadJSON() }} className="btn"> Upload JSON</button>
+                    <button onClick={() => { this.uploadImages() }} className="btn btn-blue">Load project</button>
+                    <button className="btn">Save project</button>
                 </div>
             </div>
             </React.Fragment>

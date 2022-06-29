@@ -61,7 +61,8 @@ class PageBuilder extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: props.conent
+            content: props.content,
+            pictures: props.pictures
         }
     }
 
@@ -141,12 +142,15 @@ class PageBuilder extends React.Component {
                 if (partName == 'sectionTitle') { 
                     // pageSpace < 6 ? commitPageToDocument():null
 
-                    currentPage.push(
-                        <h3 key={uuid()} className="steps-title">
-                            <span>{sectionCounter++}</span>{part.sectionTitle}
-                            <TitleOrnement></TitleOrnement>
-                        </h3>
-                    )
+                    console.log("sectionTitle", part.sectionTitle)
+                    if (part.sectionTitle != "") {
+                        currentPage.push(
+                            <h3 key={uuid()} className="steps-title">
+                                <span>{sectionCounter++}</span>{part.sectionTitle}
+                                <TitleOrnement></TitleOrnement>
+                            </h3>
+                        )
+                    }
 
                 }
             
@@ -162,7 +166,7 @@ class PageBuilder extends React.Component {
                     }
 
                     function commitToCurrentPage(figureClassName, figuresToCommit) {
-                        // console.log(figureClassName, (figureClassName == "laststep"))
+
                         if (!(figureClassName == "laststep")) {
                             currentPage.push(React.createElement("div", 
                                 { className: "steps" + figureClassName, key: uuid() }, 
@@ -194,7 +198,7 @@ class PageBuilder extends React.Component {
 
                         if(isLastStepPart() && (figures.length < 9)) {
 
-                            // console.log('Last step section : Final layout')
+                            // Last step section : Final layout
 
                             if (figures.length % 3 == 1) {
                                 pageSpace -= 3
@@ -213,7 +217,6 @@ class PageBuilder extends React.Component {
                             commitToCurrentPage(defineClassName(lastFigures) + ' lastFigures', lastFigures)
 
                             return "laststep" // Signal that it was the last step
-
                         }
 
                         return ""
@@ -240,13 +243,10 @@ class PageBuilder extends React.Component {
                                     id = (j + 1).toString().padStart(2,0)
 
                                 try { // Check if image exist 
-                                    img = require('../../content/tutorials/steps/step' + id + '.webp')
-                                    imgData = getBase64Image(img);
-                                    localStorage.setItem("step" + id, imgData);
 
                                     figures.push(
                                         <figure key={uuid()}>
-                                            <img src={imgData} alt=""></img>
+                                            <img src={this.state.pictures[j]} alt=""></img>
                                             {/* <img src={"data:image/webp;base64," + imgData} alt=""></img> */}
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                         </figure>
@@ -254,7 +254,6 @@ class PageBuilder extends React.Component {
 
                                 } catch (e){ // or create from a placeholder
 
-                                    // console.warn(e)
                                     figures.push(
                                         <figure key={uuid()}>
                                             <img src={placeholder} alt=""></img>
@@ -266,7 +265,6 @@ class PageBuilder extends React.Component {
                                 addedFigures++
                             }
                         } else { // Not enough space
-                            // console.log('Not enough space -> Page jump')
                             j-- // We reset the loop we've done
                             var className = defineLayout(figures)
                             
