@@ -80,23 +80,26 @@ class App extends React.Component {
                 }
             })
         }.bind(this)
+        let content,
+            isValid,
+            ParsedJSON,
+            textContent
 
         try {
-            var content
-
-            if (this.state.language = "fr") {
-                content = {
-                    fr: JSON.parse(input),
-                    en: this.state.content.en
-                }
-            } else {
-                content = {
-                    fr: this.state.content.fr,
-                    en: JSON.parse(input)
-                }
-            }
+            ParsedJSON = JSON.parse(input);
+            textContent = input
+            isValid = true
 
         } catch (e) {
+            textContent = input // return a String rather than a JSON
+            isValid = false
+            
+            if (this.state.language = "fr") { // return no change on parsed content
+                ParsedJSON = this.state.content.fr
+            } else {
+                ParsedJSON = this.state.content.en
+            }
+
             if (e instanceof SyntaxError) {
                 printError(e, true)
             } else {
@@ -104,17 +107,44 @@ class App extends React.Component {
             }
         }
 
+        if (this.state.language = "fr") {
+            content = {
+                fr: ParsedJSON,
+                en: this.state.content.en
+            }
+        } else {
+            content = {
+                fr: this.state.content.fr,
+                en: ParsedJSON
+            }
+        }
+
+        // console.log("before set state", textContent)
+
         this.setState({
             content: content,
             JSONStatus: {
-                isValid: true
+                isValid: isValid
             },
-            textContent: content
+            textContent: textContent
         })
     }
 
+    getEditorValue(textContent) {
+        console.log("Is valid ? ", this.state.JSONStatus.isValid)
+        if (this.state.JSONStatus.isValid) {
+            return JSON.stringify(textContent[this.state.language], null, 4)
+        } else {
+
+            if(typeof textContent != "string") { // Avoid text content to pass two times for a reason I Ignore
+                textContent = JSON.stringify(textContent, null, 4)
+            }
+
+            return textContent
+        }
+    }
+
     changeLanguage(languageCode) {
-        console.log(this)
         this.setState({
             language: languageCode.value,
         })
@@ -123,7 +153,6 @@ class App extends React.Component {
     togglePrintMode() {
 
         if (this.state.printMode == false) {
-            console.log("NO print")
             document.querySelector("style.app-css").remove()
             document.querySelector(".text-editor").style.display = "none"
 
@@ -132,7 +161,6 @@ class App extends React.Component {
             })
 
         } else { 
-            console.log("YES print")
             let style = require("../css/app.rcss")
 
             document.head.insertAdjacentHTML("beforeend", `<style class='app-css'>${style}</style>`)
@@ -142,10 +170,6 @@ class App extends React.Component {
                 printMode: false
             })
         }
-    }
-
-    saveImages() {
-
     }
 
     uploadImages() {
@@ -205,10 +229,9 @@ class App extends React.Component {
             }
 
             for await (const fileHandle of getFilesRecursively(dirHandle)) {
-                console.log(fileHandle);
+                // console.log(fileHandle);
             }
 
-            console.log(await project.pictures)
             this.setState({
                 content: project.content,
                 JSONStatus: {
@@ -267,7 +290,6 @@ class App extends React.Component {
     }
     
     render() {
-
         let title = this.state.content[this.state.language].cover.title,
             content = this.state.content[this.state.language],
             template = this.state.template[this.state.language],
@@ -360,10 +382,12 @@ class App extends React.Component {
                     onChange={this.contentUpdate}
                     name="ace_editor"
                     editorProps={{ $blockScrolling: true }}
-                    value={ JSON.stringify(this.state.textContent[this.state.language], null, 4) }
+                    value={ this.getEditorValue(this.state.textContent) }
                     setOptions={{
                         tabSize: 4,
                     }}
+                    fontSize={16}
+                    wrapEnabled={true}
                 />
                 <label htmlFor="language">Langage</label>
 
@@ -377,8 +401,10 @@ class App extends React.Component {
                     options={options}
                 />
                 <div>
-                    <button onClick={() => { this.uploadImages() }} className="btn btn-blue">Load project</button>
-                    <button className="btn">Save project</button>
+                    <button className="btn btn-blue" onClick={() => { this.uploadImages() }} >Load project</button>
+                    <a  class="btn" 
+                        href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
+                        download={ "content-" + this.state.language + ".js"}>Save JSON</a>
                     <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
                 </div>
 

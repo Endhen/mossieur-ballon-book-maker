@@ -107,10 +107,6 @@ label[for="language"] {
     background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
 }
 
-.editor-vue {
-    display: none;
-}
-
 /* width */
 ::-webkit-scrollbar {
     width: 15px;
@@ -126,7 +122,7 @@ label[for="language"] {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     border-radius: 100px 0 0 100px !important;
-    background: white;
+    background: rgb(109, 152, 163);
 }
 
 #ace_editor ::-webkit-scrollbar-thumb {

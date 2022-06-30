@@ -96,7 +96,8 @@ class PageBuilder extends React.Component {
 
 
     buildPage(introduction, tutorials) {
-        let pageSpace = 9, // Starting page space minus the introduction section
+        introduction.size = 3
+        let pageSpace = 12 - introduction.size, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],
             sectionCounter = 1
@@ -140,9 +141,7 @@ class PageBuilder extends React.Component {
                 }
             
                 if (partName == 'sectionTitle') { 
-                    // pageSpace < 6 ? commitPageToDocument():null
 
-                    console.log("sectionTitle", part.sectionTitle)
                     if (part.sectionTitle != "") {
                         currentPage.push(
                             <h3 key={uuid()} className="steps-title">
@@ -244,7 +243,7 @@ class PageBuilder extends React.Component {
 
                                     if ((part.steps.length - addedFigures) == 1) {
                                         figcaptionClassName = "last-sentence"
-                                        console.log(figcaptionClassName, step)
+                                        // console.log(figcaptionClassName, step)
                                     }
 
                                     figures.push(

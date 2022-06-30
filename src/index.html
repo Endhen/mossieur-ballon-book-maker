@@ -6,140 +6,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Initiation à la sculpture sur ballon 23 – Le dinosaure</title>
     <style class="app-css">
-#app {
-    display: flex;
-    flex-direction: row;
-}
+        #app {
+            display: flex;
+            flex-direction: row;
+        }
 
-.ace_scrollbar-h {
-    display: none;
-}
+        .ace_scrollbar-h {
+            display: none;
+        }
 
-#ace_editor {
-    box-shadow: 0px 3px 10px 3px #1b4f5961;
-}
+        #ace_editor {
+            box-shadow: 0px 3px 10px 3px #1b4f5961;
+        }
 
-.preview {
-    width: 750px;
-    transform-origin: 0 0;
-    transform: matrix(.7, 0, 0, .7, 0, 0);
-    /* transform: matrix(1, 0, 0, 1, 0, 0); */
-}
+        .preview {
+            width: 750px;
+            transform-origin: 0 0;
+            transform: matrix(.7, 0, 0, .7, 0, 0);
+            /* transform: matrix(1, 0, 0, 1, 0, 0); */
+        }
 
-.preview-container {
-    height: 100vh;
-    overflow-y: scroll;
-    background: #575757;
-}
+        .preview-container {
+            height: 100vh;
+            overflow-y: scroll;
+            background: #575757;
+        }
 
-.page,
-.cover-page {
-    margin: 30px;
-    box-shadow: 3px 4px 20px 2px #00000045;;
-}
+        .page,
+        .cover-page {
+            margin: 30px;
+            box-shadow: 3px 4px 20px 2px #00000045;;
+        }
 
-#ace_editor {
-    border-radius: 10px;
-}
-
-
-.text-editor {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 50px;
-    height: 85vh;
-}
-
-.text-editor h1 {
-    color: rgb(63, 112, 124);
-    margin:  0 0 30px;
-}
-
-.text-editor textarea {
-    width: 90%;
-    flex-grow: 2;
-    border-radius: 5px;
-    padding: 30px;
-    border: 1px solid rgb(116, 116, 116)
-}
-
-.text-editor textarea:focus-visible {
-    border: 2px solid rgb(109, 152, 163) !important;
-    outline: none;
-}
-
-.text-editor h1 {
-    margin: 0;
-}
-
-.text-editor p {
-    padding: 5px;
-    height: 20px;
-}
-
-p.error {
-    color: #b10808;
-    background-color: #ffdada;
-    font-size: 13px;
-    padding: 5px;
-    border-radius: 5px;
-}
+        #ace_editor {
+            border-radius: 10px;
+        }
 
 
-label[for="language"] {
-    margin: 20px 0 10px;
-}
+        .text-editor {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 50px;
+            height: 85vh;
+        }
 
-.btn {
-    width: fit-content;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-right: 15px;
+        .text-editor h1 {
+            color: rgb(63, 112, 124);
+            margin:  0 0 30px;
+        }
 
-    color: white;
-    font-family: 'Nunito';
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    box-shadow: 0px 1px 4px 2px #1b4f5957;
-    background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 156, 147) 89%);
-    
-    cursor: pointer;
-}
+        .text-editor textarea {
+            width: 90%;
+            flex-grow: 2;
+            border-radius: 5px;
+            padding: 30px;
+            border: 1px solid rgb(116, 116, 116)
+        }
 
-.btn-blue {
-    background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
-}
+        .text-editor textarea:focus-visible {
+            border: 2px solid rgb(109, 152, 163) !important;
+            outline: none;
+        }
 
-/* width */
-::-webkit-scrollbar {
-    width: 15px;
-    right: 5px;
-}
+        .text-editor h1 {
+            margin: 0;
+        }
 
-/* Track */
-::-webkit-scrollbar-track {
-    border-radius: 100px 0 0 100px !important;
-    background: #9ba8ac17;   
-}
+        .text-editor p {
+            padding: 5px;
+            height: 20px;
+        }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    border-radius: 100px 0 0 100px !important;
-    background: white;
-}
+        p.error {
+            color: #b10808;
+            background-color: #ffdada;
+            font-size: 13px;
+            padding: 5px;
+            border-radius: 5px;
+        }
 
-#ace_editor ::-webkit-scrollbar-thumb {
-    background-color: #2e8a79;
-}
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: rgb(109, 152, 163);
-}
+        label[for="language"] {
+            margin: 20px 0 10px;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-right: 15px;
+
+            color: white;
+            font-family: 'Nunito';
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0px 1px 4px 2px #1b4f5957;
+            background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 156, 147) 89%);
+            
+            cursor: pointer;
+        }
+
+        .btn-blue {
+            background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 15px;
+            right: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            border-radius: 100px 0 0 100px !important;
+            background: #9ba8ac17;   
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 100px 0 0 100px !important;
+            background: rgb(109, 152, 163);
+        }
+
+        #ace_editor ::-webkit-scrollbar-thumb {
+            background-color: #2e8a79;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(109, 152, 163);
+        }
     </style>
 </head>
 <body>
