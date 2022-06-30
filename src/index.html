@@ -52,15 +52,23 @@
         }
 
         .text-editor h1 {
-            color: rgb(63, 112, 124);
+            font-size: 35px;
+            color: #529fac;
             margin:  0 0 30px;
+            margin: 0;
+        }
+
+        .text-editor h3 {
+            font-size: 30px;
+            color: #458b97;
         }
 
         .text-editor textarea {
+            color: #2e2e2e;
             width: 90%;
             flex-grow: 2;
             border-radius: 5px;
-            padding: 30px;
+            padding: 25px 25px 0;
             border: 1px solid rgb(116, 116, 116)
         }
 
@@ -69,13 +77,17 @@
             outline: none;
         }
 
-        .text-editor h1 {
-            margin: 0;
-        }
-
         .text-editor p {
             padding: 5px;
             height: 20px;
+        }
+
+        .text-editor .selection,
+        .text-editor .selection:focus-visible {
+            height: 165px;
+            border: none !important;    
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px 0px #1b4f5930;
         }
 
         p.error {

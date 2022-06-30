@@ -53,5 +53,5 @@ module.exports = {
         // },
     ]
     },
-  plugins: [new HtmlWebPlugin({ template: "./src/index.html" })],
+    plugins: [new HtmlWebPlugin({ template: "./src/index.html" })],
 };

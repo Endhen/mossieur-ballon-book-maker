@@ -63,7 +63,10 @@ h2, h3 {
     color: #2C7F8D;
 } 
 
-h3 { font-size: 28px; }
+h3 { 
+    font-size: 28px; 
+    margin: 10px 0 20px !important;
+}
 
 h2 {
     font-size: 42px;
@@ -442,10 +445,27 @@ ul {
 
 .page figure {
     display: flex;
+    position: relative;
     flex-direction: column;
     max-width: 250px;
     margin: 0;
     break-inside: avoid;
+}
+
+.page figure .selection-area {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 90%;
+    min-height: 250px;
+    /* max-height: 300px; */
+    border-radius: 15px;
+    cursor: pointer;
+    
+}
+
+.page figure .selection-area:hover {
+    background-color: #2c7e8d40;
 }
 
 .page figure img {
@@ -485,7 +505,7 @@ figcaption span {
     text-align: center;
     font-size: 22px !important;
     color: #5d84b8;
-    margin: 15px 0 0;
+    /* margin: 15px 0 0; */
 }
 
 .last-step-part figure:last-child span {

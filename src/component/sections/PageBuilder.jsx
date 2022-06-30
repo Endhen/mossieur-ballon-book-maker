@@ -5,57 +5,6 @@ import PageOrnements from '../svg/PageOrnements.jsx'
 import placeholder from '../../content/template/assets/placeholder.svg'
 import { v4 as uuid } from 'uuid'
 
-function getBase64Image(img) {
-
-    var canvas = document.createElement("canvas"),
-        myImage = new Image(175, 98)
-        myImage.src = img
-
-    canvas.width = 175;
-    canvas.height = 98;
-
-    function drawTest() {
-        var ctx = canvas.getContext("2d");        
-        ctx.drawImage(this, 0, 0, 175, 98); 
-    }
-
-    myImage.onload = drawTest
-
-
-    test()
-    var dataURL = canvas.toDataURL(img.format);
-
-    var imageTest = new Image(175, 98)
-    imageTest.src = dataURL
-    // document.body.appendChild(myImage);
-    document.body.appendChild(imageTest);
-
-    return dataURL;
-    // return dataURL.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
-}
-
-function test() {
-
-    var canvas = document.createElement("canvas"),
-        myImage = new Image(175, 98)
-        myImage.src = require('../../content/tutorials/steps/step01.webp') 
-
-    canvas.width = 175;
-    canvas.height = 98;
-
-    function draw() {
-        var ctx = canvas.getContext("2d");        
-        ctx.drawImage(this, 0, 0, 175, 98); 
-    }
-
-    myImage.onload = draw
-
-    var dataURL = canvas.toDataURL("image/webp");
-    // console.log(dataURL)
-
-    document.body.appendChild(canvas);
-}
-
 
 class PageBuilder extends React.Component {
     constructor(props) {
@@ -100,7 +49,9 @@ class PageBuilder extends React.Component {
         let pageSpace = 12 - introduction.size, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],
-            sectionCounter = 1
+            sectionCounter = 1,
+            stepSectionCounter = 1,
+            tutorialCounter = 0
         var currentPage = [<Introduction key={uuid()} content={introduction}></Introduction>]
 
         function commitPageToDocument() {
@@ -121,12 +72,16 @@ class PageBuilder extends React.Component {
         content.forEach((part, i) => {
             var isLastPart = i == content.length - 1,
                 partName = Object.keys(part)[0]
+
+            // console.log(part)
             
             if (pageSpace >= 0) {
                 
                 if (partName == 'introduction') {
                     let introduction = part.introduction 
                     // pageSpace < 6 ? commitPageToDocument():null
+                    tutorialCounter++
+                    stepSectionCounter = 1
                     pageSpace -= 3
 
                     currentPage.push(React.createElement("div", 
@@ -158,7 +113,9 @@ class PageBuilder extends React.Component {
                         lastFigures,
                         addedFigures = 0,
                         steps = part.steps,
-                        breakShift = 0
+                        breakShift = 0,
+                        actualStepSection = stepSectionCounter++,
+                        actualTutorial = tutorialCounter
 
                     function isLastStepPart() { // If there is no remaining steps to convert to figures, it is last step
                         return 0 >= steps.length - addedFigures 
@@ -243,14 +200,14 @@ class PageBuilder extends React.Component {
 
                                     if ((part.steps.length - addedFigures) == 1) {
                                         figcaptionClassName = "last-sentence"
-                                        // console.log(figcaptionClassName, step)
                                     }
 
+                                    // console.log(this.state.selector("OUI"))
                                     figures.push(
                                         <figure key={uuid()}>
                                             <img src={this.state.pictures[j]} alt=""></img>
-                                            {/* <img src={"data:image/webp;base64," + imgData} alt=""></img> */}
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
+                                            <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }} className="selection-area"></div>
                                         </figure>
                                     )
 
@@ -260,6 +217,7 @@ class PageBuilder extends React.Component {
                                         <figure key={uuid()}>
                                             <img src={placeholder} alt=""></img>
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
+                                            <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }}className="selection-area"></div>
                                         </figure>
                                     )
                                 }

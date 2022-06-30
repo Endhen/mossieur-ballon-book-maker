@@ -1,4 +1,5 @@
 import React from 'react'
+// import AJV from 'ajv'
 
 import TutoLevel from './svg/TutoLevel.jsx'
 import PlayButton from './svg/PlayButton.jsx'
@@ -17,7 +18,7 @@ import contentEN from '../content/tutorials/content-en.json'
 import templateFR from '../content/template/template-fr.json'
 import templateEN from '../content/template/template-en.json'
 
-import "ace-builds/src-noconflict/mode-javascript"
+import "ace-builds/src-noconflict/mode-json"
 import 'ace-builds/src-noconflict/theme-solarized_dark';
 
 // TODO Last pix functionnality
@@ -61,29 +62,52 @@ class App extends React.Component {
             textContent: content,
             cover: cover,
             printMode: false,
+            selection: {
+                type: "",
+                title: "",
+                text: "",
+                position: {
+                    tutorial: "",
+                    section: "",
+                    self: ""
+                }
+            },
             JSONStatus: {
                 isValid: true,
                 errorMessage: ""
             }
         }
 
+        this.ref = React.createRef();
+
         this.contentUpdate = this.contentUpdate.bind(this)
     }
 
     contentUpdate(input) {
 
-        let printError = function(error, explicit) {
-            this.setState({
-                JSONStatus: {
-                    isValid: false,
-                    errorMessage: `[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`
-                }
-            })
-        }.bind(this)
+        // var schema = require("../content/template/schema.json")
+        // const Ajv = require("ajv-draft-04")
+
+        // var ajv = new Ajv({allErrors: true, strictTuples: false });
+        //     ajv.compile(schema);
+
+        // var valid = ajv.validate(schema, JSON.parse(input));
+
+        // (valid) ? console.log('Valid!') : console.log('Invalid: '+ ajv.errorsText());
+        // console.log(ajv.errors);
+
+        // var match = input.match("\n");
+        // console.log(match)
+        
+
         let content,
             isValid,
             ParsedJSON,
-            textContent
+            textContent,
+            errorMessage,
+            printError = function(error, explicit) {
+                errorMessage = `[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`
+            }.bind(this)
 
         try {
             ParsedJSON = JSON.parse(input);
@@ -124,14 +148,14 @@ class App extends React.Component {
         this.setState({
             content: content,
             JSONStatus: {
-                isValid: isValid
+                isValid: isValid,
+                errorMessage: errorMessage
             },
             textContent: textContent
         })
     }
 
     getEditorValue(textContent) {
-        console.log("Is valid ? ", this.state.JSONStatus.isValid)
         if (this.state.JSONStatus.isValid) {
             return JSON.stringify(textContent[this.state.language], null, 4)
         } else {
@@ -288,6 +312,50 @@ class App extends React.Component {
         JSONContent()
 
     }
+
+    select(turorial, type, position, section) {
+        let content = this.state.content[this.state.language],
+            chapter = ""
+
+        if (content.tutorials[turorial - 1].sections[section - 1].title != "") {
+            chapter = section + ") " + content.tutorials[turorial - 1].sections[section - 1].title + " : "
+        }
+
+
+        let title = chapter + type + ' - ' + position,
+            text = content.tutorials[turorial - 1].sections[section - 1].steps[position - 1]
+
+        this.setState({
+            selection: {
+                type: type,
+                title: title,
+                text: text,
+                position: {
+                    tutorial: turorial,
+                    section: section,
+                    self: position
+                }
+            }
+        })
+    }
+
+    editSelection(editedContent) {
+
+        let selection = this.state.selection,
+            content = this.state.content,
+            position = selection.position
+
+        if (position.tutorial != "") {
+
+            content[this.state.language].tutorials[position.tutorial - 1].sections[position.section - 1].steps[position.self - 1] = editedContent.target.value
+            selection.text = editedContent.target.value
+
+            this.setState({
+                content: content,
+                selection: selection
+            })
+        }        
+    }
     
     render() {
         let title = this.state.content[this.state.language].cover.title,
@@ -307,6 +375,15 @@ class App extends React.Component {
         } else {
             selectedOption = {value: "en", label : "Anglais"}
         }
+
+        const annotations = [
+            {
+                row: 3, // must be 0 based
+                column: 4, // must be 0 based
+                text: "error.message", // text to show in tooltip
+                type: "error"
+            }
+        ];
 
         return (
             <React.Fragment>
@@ -366,14 +443,19 @@ class App extends React.Component {
                         </section>
                     </div>
 
-                    <PageBuilder content={content} pictures={pictures}></PageBuilder>
+                    <PageBuilder content={content} pictures={pictures} selector={this.select.bind(this)}></PageBuilder>
                 </div>
             </div>
             <div className="text-editor">
-                <h1>Content editor</h1>
+                <h1>{content.cover.title.subject}</h1>
+                <h3>{!(this.state.selection.title !="")?"Selection":this.state.selection.title}</h3>
+
+                <textarea className="selection" value={this.state.selection.text} ref={this.ref}  onChange={(e) => { this.editSelection(e) }} />
+
                 <p className={ this.state.JSONStatus.isValid?"":"error" }>{!this.state.JSONStatus.isValid?this.state.JSONStatus.errorMessage:""}</p>
+
                 <AceEditor
-                    mode="javascript"
+                    mode="json"
                     theme="solarized_dark"
                     width='100%'
                     height='700px'
@@ -388,6 +470,7 @@ class App extends React.Component {
                     }}
                     fontSize={16}
                     wrapEnabled={true}
+                    // annotations={annotations} 
                 />
                 <label htmlFor="language">Langage</label>
 
@@ -402,12 +485,11 @@ class App extends React.Component {
                 />
                 <div>
                     <button className="btn btn-blue" onClick={() => { this.uploadImages() }} >Load project</button>
-                    <a  class="btn" 
+                    <a  className="btn" 
                         href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
-                        download={ "content-" + this.state.language + ".js"}>Save JSON</a>
+                        download={ "content-" + this.state.language + ".json"}>Save JSON</a>
                     <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
                 </div>
-
                 
             </div>
             <button className='editor-vue' onClick={() => { this.togglePrintMode() }}>Editor</button>
