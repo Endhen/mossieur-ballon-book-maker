@@ -51,13 +51,14 @@
         }
 
         .text-editor h3 {
+            margin: 25px 0 20px !important;
             font-size: 30px;
             color: #458b97;
         }
 
         .text-editor textarea {
             color: #2e2e2e;
-            width: 90%;
+            width: calc(100% - 50px);
             flex-grow: 2;
             border-radius: 5px;
             padding: 25px 25px 0;
@@ -93,6 +94,12 @@
 
         label[for="language"] {
             margin: 20px 0 10px;
+        }
+
+        .actions { 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .btn {

@@ -21,12 +21,10 @@ import templateEN from '../content/template/template-en.json'
 import "ace-builds/src-noconflict/mode-json"
 import 'ace-builds/src-noconflict/theme-solarized_dark';
 
-// TODO Last pix functionnality
 // TODO Functionnality Break : If some text really need to be long
 
 // * Try every steps, title and introduction block configuration : Title in last, sub transition in last, Ornement not hiding anything in some configurations
 
-// TODO Integrate differents languages with tabs
 // TODO Custom form to add differents elements
 // TODO Hover function to perform actions on items : remove, uptade, add to left / right
 // TODO Output mode : PDF / Book / Web article ? 
@@ -78,9 +76,16 @@ class App extends React.Component {
             }
         }
 
+        this.loadAppStyle()
+
         this.ref = React.createRef();
 
         this.contentUpdate = this.contentUpdate.bind(this)
+    }
+
+    loadAppStyle() {
+        let style = require("../css/app.rcss")
+        document.head.insertAdjacentHTML("beforeend", `<style class='app-css'>${style}</style>`)
     }
 
     contentUpdate(input) {
@@ -185,10 +190,8 @@ class App extends React.Component {
             })
 
         } else { 
-            let style = require("../css/app.rcss")
-
-            document.head.insertAdjacentHTML("beforeend", `<style class='app-css'>${style}</style>`)
-            document.querySelector(".text-editor").style.display = "block"
+            this.loadAppStyle()
+            document.querySelector(".text-editor").style.display = "flex"
 
             this.setState({
                 printMode: false
@@ -458,7 +461,6 @@ class App extends React.Component {
                     mode="json"
                     theme="solarized_dark"
                     width='100%'
-                    height='700px'
                     showGutter={true}
                     highlightActiveLine={true}
                     onChange={this.contentUpdate}
@@ -472,7 +474,7 @@ class App extends React.Component {
                     wrapEnabled={true}
                     // annotations={annotations} 
                 />
-                <label htmlFor="language">Langage</label>
+                <p className="language" htmlFor="language">Langage</p>
 
                 <Select
                     value={selectedOption}
@@ -483,12 +485,14 @@ class App extends React.Component {
                     }}
                     options={options}
                 />
-                <div>
+                <div className='actions'>
                     <button className="btn btn-blue" onClick={() => { this.uploadImages() }} >Load project</button>
-                    <a  className="btn" 
-                        href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
-                        download={ "content-" + this.state.language + ".json"}>Save JSON</a>
-                    <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
+                    <div>
+                        <a  className="btn" 
+                            href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
+                            download={ "content-" + this.state.language + ".json"}>Save JSON</a>
+                        <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
+                    </div>
                 </div>
                 
             </div>

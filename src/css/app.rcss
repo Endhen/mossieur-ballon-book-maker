@@ -7,8 +7,14 @@
             display: none;
         }
 
+        .editor-vue {
+            display: none;
+        }
+
         #ace_editor {
             box-shadow: 0px 3px 10px 3px #1b4f5961;
+            border-radius: 10px;
+            height: 700px;
         }
 
         .preview {
@@ -30,17 +36,12 @@
             box-shadow: 3px 4px 20px 2px #00000045;;
         }
 
-        #ace_editor {
-            border-radius: 10px;
-        }
-
-
         .text-editor {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
             padding: 50px;
-            height: 85vh;
+            height: calc(100vh - 100px);
         }
 
         .text-editor h1 {
@@ -51,13 +52,14 @@
         }
 
         .text-editor h3 {
+            margin: 25px 0 20px !important;
             font-size: 30px;
             color: #458b97;
         }
 
         .text-editor textarea {
             color: #2e2e2e;
-            width: 90%;
+            width: calc(100% - 50px);
             flex-grow: 2;
             border-radius: 5px;
             padding: 25px 25px 0;
@@ -76,7 +78,7 @@
 
         .text-editor .selection,
         .text-editor .selection:focus-visible {
-            height: 165px;
+            height: 110px;
             border: none !important;    
             border-radius: 10px;
             box-shadow: 0px 3px 8px 0px #1b4f5930;
@@ -91,8 +93,15 @@
         }
 
 
-        label[for="language"] {
+        .language {
             margin: 20px 0 10px;
+        }
+
+        .actions { 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 15px;
         }
 
         .btn {
