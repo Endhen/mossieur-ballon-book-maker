@@ -1,6 +1,6 @@
 {
     "cover": {
-        "filename": "en",
+        "projectName": "turtle",
         "title": {
             "main": "Initiation à la sculpture sur ballon",
             "chapter": 23,
@@ -139,5 +139,42 @@
                 }
             ]
         }
-    ] 
+    ],
+    "transcription": [ 
+        "Good morning ! Today, we will continue our new series which is called: Twist 1 balloon in less than 3 minutes!",
+        "This new tutorial was requested on my blog by \"Borner_Line\", which I take the opportunity to salute.",
+        "And I remind you, if you're a beginner, you'll probably have to check out some of the tutorials which are in the basic balloon twisting techniques section which you will find in the description, under the video.",
+        "Without further ado, let me show you how to make a balloon turtle in less than three minutes!",
+        "We will need 3 balloons: 1 green, 1 brown and 1 white.",
+        "We'll inflate the green balloon, leaving a margin at the beginning and also at the end.",
+        "We're going to split the balloon into two unequal segments, the smaller segments will be on the side with the smaller margin, and the larger segment will be on the side with the larger margin side.",
+        "We align these two long bubbles side by side, and we shorten the longest one, so that they both are the same size as the shorter one.",
+        "This will allow us to make a loop right in the middle of the two bubbles. ",
+        "Then we make a first bubble about (the width of) two fingers, then a second, slightly larger bubble.",
+        "We do exactly the same on the other side, then we lock the two big bubbles together.",
+        "Then we bring the center of the small bubbles closer to the center of the big bubbles, and we lock them together.",
+        "We thin out both segments, and we make a bubble about the width of three fingers, at the end of the shortest segment.",
+        "Then, we align the longest segment, to make another long bubble.",
+        "Then, we take the longest bubble of the two remaining ones, and form a small round bubble at its base, which we will turn into a pinch-twist. That will form the turtle's tail.",
+        "Then inflate the brown balloon, leaving a good margin at the end.",
+        "The knot of the brown balloon will be locked at the junction of the turtle's head and front legs.",
+        "We then make a brown bubble the same size as the turtle's belly,  which will be blocked at the junction of the tail and the hind legs, ",
+        "followed by a second bubble... and a third...",
+        "the bubbles on the sides should be a tiny bit longer than the bubbles in the middle,",
+        "a fourth bubble...",
+        "remember, when you lock balloons together, to use circular movements so that you avoid unnecessary friction",
+        "and the fifth bubble!",
+        "We pierce the end of the balloon that we no longer need, to let the excess air flow out, and we lock it well to make sure that it does not come undone.",
+        "We then take the white balloon, and we will start by making two small bubbles, that we will tie together tightly.",
+        "By locking the knot in this manner and using the pressure which remains at the base of the unused balloon, we will be able to tighten the two bubbles very closely together.",
+        "We cut the unnecessary excess balloon and tie a knot. ",
+        "We have just formed the two eyes of the turtle that we are going to insert in the center of the very first loop we did.",
+        "Like that !",
+        "We make a little drawing for the eyes. and that's it !",
+        "You learned how to make a turtle in less than three minutes!",
+        "There you go, I hope you enjoyed this new format!",
+        "Do not hesitate to tell me which tutorial you would like me to publish next time.",
+        "And as usual: \"See you very soon\", for another lesson, with Môssieur Ballon!",
+        ""
+    ]
 }

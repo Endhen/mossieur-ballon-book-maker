@@ -37,6 +37,7 @@
         }
 
         .text-editor {
+            position: relative;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -52,7 +53,7 @@
         }
 
         .text-editor h3 {
-            margin: 25px 0 20px !important;
+            margin: 10px 0 10px !important;
             font-size: 30px;
             color: #458b97;
         }
@@ -152,4 +153,62 @@
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
             background: rgb(109, 152, 163);
+        }
+
+        .notification {
+            position: absolute;
+            overflow: hidden;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            width: 245px;
+            height: 45px;
+
+            border-radius: 5px;
+            padding: 10px;
+            top: -75px;
+            right: 50%;
+            box-shadow: 1px 3px 7px 0px #529fac6e;
+            font-weight: 600;
+            text-align: center;
+
+            background: white;
+            color: #323232;
+        }
+
+        .notification::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: #529fac;
+        }
+
+        .notification-show {
+            animation-name: show;
+            animation-duration: 4s;
+        }
+
+        @keyframes show {
+            0%   {transform: translateY(0px);}
+            20%  {transform: translateY(105px);}
+            50%  {transform: translateY(100px);}
+            80%  {transform: translateY(105px);}
+            100% {transform: translateY(0px);}
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+
+        }
+
+        .options > * {
+            flex-grow: 2;
         }

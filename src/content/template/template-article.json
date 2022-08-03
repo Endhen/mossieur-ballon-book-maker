@@ -1,0 +1,44 @@
+{  
+    "fr": {
+        "siteUrl": "staging.mossieur-ballon.com",
+        "video": {
+            "title": "Tutoriel Vidéo",
+            "language": {
+                "notice": "",
+                "instructions": ""
+            }
+        },
+        "titles": {
+            "level": "Niveau",
+            "equipment": "Matériel nécessaire",
+            "skills": "Techniques utilisées",
+            "tutorial": "Photos détaillées de chaque étape"
+        },
+        "download": "Télécharger la fiche PDF avec les photos détaillées de chaque étape",
+        "outro": {
+            "title": "Avez vous besoin d'aide supplémentaires pour réussir ce tutoriel ?",
+            "content": "N'hésitez pas à partager votre retour d'expérience, ou même à poser vos questions ou demander de l'aide si nécessaire. Je me ferai un plaisir de vous aider !"
+        }
+    },
+    "en": {
+        "siteUrl": "staging.mossieur-ballon.com",
+        "video": {
+            "title": "Video Tutorial",
+            "language": {
+                "notice": "Video in French, with English subtitles",
+                "instructions": "(if captions do not automatically display in your favorite language, you simply need to modify YouTube parameters at the bottom right of the video screen)."
+            }
+        },
+        "titles": {
+            "level": "Level",
+            "equipment": "Item needed",
+            "skills": "Balloon twisting techniques used in this tutorial",
+            "tutorial": "Step-By-Step Photo Guide"
+        },
+        "download": "Download the PDF guide sheet with detailed photos of each step",
+        "outro": {
+            "title": "Do you need more help with this tutorial ?",
+            "content": "Do not hesitate to post your feedback or any question you may have regarding this tutorial if you need to. I'm here to help you!"
+        }
+    }
+}

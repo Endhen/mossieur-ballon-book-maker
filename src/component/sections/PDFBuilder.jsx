@@ -6,7 +6,7 @@ import placeholder from '../../content/template/assets/placeholder.svg'
 import { v4 as uuid } from 'uuid'
 
 
-class PageBuilder extends React.Component {
+class PDFBuilder extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -202,7 +202,6 @@ class PageBuilder extends React.Component {
                                         figcaptionClassName = "last-sentence"
                                     }
 
-                                    // console.log(this.state.selector("OUI"))
                                     figures.push(
                                         <figure key={uuid()}>
                                             <img src={this.state.pictures[j]} alt=""></img>
@@ -258,4 +257,4 @@ class PageBuilder extends React.Component {
 }
 
 
-export default PageBuilder
+export default PDFBuilder

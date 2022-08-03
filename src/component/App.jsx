@@ -1,25 +1,26 @@
 import React from 'react'
 // import AJV from 'ajv'
+import { v4 as uuid } from 'uuid'
 
-import TutoLevel from './svg/TutoLevel.jsx'
-import PlayButton from './svg/PlayButton.jsx'
-import MainTitleOrnement from './svg/MainTitleOrnement.jsx'
-import PageBuilder from './sections/PageBuilder.jsx'
+import ArticleBuilder from './sections/ArticleBuilder.jsx';
+import PDFBuilder from './sections/PDFBuilder.jsx'
+import CoverPage from './sections/CoverPage.jsx'
 import AceEditor from "react-ace"
 import Select from 'react-select';
+import cover from './../content/tutorials/cover.webp'
 
 // import '../css/app.css'
 import '../css/print.css'
-import logo from '../content/template/assets/Logo.png' 
 
-import cover from '../content/tutorials/cover.webp'
 import contentFR from '../content/tutorials/content-fr.json'
 import contentEN from '../content/tutorials/content-en.json'
-import templateFR from '../content/template/template-fr.json'
-import templateEN from '../content/template/template-en.json'
+import templatePDF from '../content/template/template-pdf.json'
+import templateArticle from '../content/template/template-article.json'
 
 import "ace-builds/src-noconflict/mode-json"
-import 'ace-builds/src-noconflict/theme-solarized_dark';
+import 'ace-builds/src-noconflict/theme-solarized_dark'
+
+// import "./../css/article.css"
 
 // TODO Functionnality Break : If some text really need to be long
 
@@ -31,7 +32,6 @@ import 'ace-builds/src-noconflict/theme-solarized_dark';
 // TODO Add config file to specify assets emplacement on the web site (Do not even need locals files, we get numbers from website)
 // TODO Input mode : JSON / Files / Forms
 // TODO Introduction size
-// TODO Last sentence
 
 // Super imposed Title
 // JSON to YAML : https://medium.com/@valentin.shamsnejad/how-to-add-yaml-syntax-validation-to-ace-editor-6db1dff4ab1b
@@ -42,8 +42,8 @@ var content = {
         en: contentEN
     },
     template = {
-        fr: templateFR,
-        en: templateEN
+        pdf: templatePDF,
+        article: templateArticle
     },
     fileHandle
 
@@ -54,11 +54,12 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            language: 'fr',
+            language: "fr",
+            format: "pdf",
             template: template,
             content: content,
-            textContent: content,
             cover: cover,
+            textContent: content,
             printMode: false,
             selection: {
                 type: "",
@@ -88,23 +89,18 @@ class App extends React.Component {
         document.head.insertAdjacentHTML("beforeend", `<style class='app-css'>${style}</style>`)
     }
 
+    loadFormatStyle(format) {
+        let style;
+
+        if (format == "pdf") {
+            document.querySelector("style.article-css").remove()
+        } else if (format == "article") {
+            style = require("../css/article.rcss")
+            document.head.insertAdjacentHTML("beforeend", `<style class='article-css'>${style}</style>`)
+        }
+    }
+
     contentUpdate(input) {
-
-        // var schema = require("../content/template/schema.json")
-        // const Ajv = require("ajv-draft-04")
-
-        // var ajv = new Ajv({allErrors: true, strictTuples: false });
-        //     ajv.compile(schema);
-
-        // var valid = ajv.validate(schema, JSON.parse(input));
-
-        // (valid) ? console.log('Valid!') : console.log('Invalid: '+ ajv.errorsText());
-        // console.log(ajv.errors);
-
-        // var match = input.match("\n");
-        // console.log(match)
-        
-
         let content,
             isValid,
             ParsedJSON,
@@ -148,8 +144,6 @@ class App extends React.Component {
             }
         }
 
-        // console.log("before set state", textContent)
-
         this.setState({
             content: content,
             JSONStatus: {
@@ -165,7 +159,7 @@ class App extends React.Component {
             return JSON.stringify(textContent[this.state.language], null, 4)
         } else {
 
-            if(typeof textContent != "string") { // Avoid text content to pass two times for a reason I Ignore
+            if(typeof textContent != "string") { // Avoid text content to pass two times for a reason I ignore
                 textContent = JSON.stringify(textContent, null, 4)
             }
 
@@ -359,97 +353,57 @@ class App extends React.Component {
             })
         }        
     }
+
+    saveToClipoard() {
+        // window.alert("HTML Copié !")
+        navigator.clipboard.writeText(document.querySelector(".preview").innerHTML)
+
+        let notification = document.querySelector('.notification')
+
+        notification.classList.add("notification-show")
+
+        setTimeout(() => {
+            notification.classList.remove("notification-show")
+        }, 4000);
+    }
     
     render() {
-        let title = this.state.content[this.state.language].cover.title,
-            content = this.state.content[this.state.language],
-            template = this.state.template[this.state.language],
-            pictures = this.state.pictures
+        let content = this.state.content[this.state.language],
+            template = this.state.template[this.state.format][this.state.language],
+            pictures = this.state.pictures,
+            selectedLanguageOption,
+            selectedFormatOption
 
-        const options = [
-            { value: 'fr', label: 'Français' },
-            { value: 'en', label: 'Anglais' }
-        ];
+        const languageOptions = [
+                { value: 'fr', label: 'Français' },
+                { value: 'en', label: 'Anglais' }],
+            formatOptions = [
+                {value: "pdf", label : "PDF"},
+                {value: "article", label : "Article"}
+            ];
 
-        var { selectedOption } = this.state.language
-
-        if (this.state.language == "fr") {
-            selectedOption = {value: "fr", label : "Français"}
-        } else {
-            selectedOption = {value: "en", label : "Anglais"}
-        }
-
-        const annotations = [
-            {
-                row: 3, // must be 0 based
-                column: 4, // must be 0 based
-                text: "error.message", // text to show in tooltip
-                type: "error"
-            }
-        ];
+        selectedLanguageOption = languageOptions[
+            this.state.language == "fr" ?0:1
+        ]
+        selectedFormatOption = formatOptions[
+            this.state.format == "pdf" ?0:1
+        ]
 
         return (
             <React.Fragment>
-            <div className="preview-container">
+            <div className="preview-container com-content-article  com-content-article__body">
                 <div className="preview">
-                    <div className="cover-page">
-                        <header>
-                            <img className="logo" src={logo} alt=""></img>
-                            <h1>
-                                {title.main} 
-                                <span className="balloon-title"> {title.chapter}
-                                <MainTitleOrnement></MainTitleOrnement>
-                                </span> - {title.subject}
-                            </h1>
-                        </header>
-
-                        <img className="cover" src={this.state.cover} alt="Image de couverture"></img>
-                        <section className="reminder">
-                            <a href={content.cover.links.youtube} target="_blank">
-                                <PlayButton></PlayButton>
-                            </a>
-                            <p>
-                                {template.reminder[0]}  
-                                <a href={content.cover.links.tutorial.link} target="_blank">{content.cover.links.tutorial.title}</a>
-                                {template.reminder[1]}
-                                <a href={content.cover.links.youtube} target="_blank">
-                                {template.reminder[2]}</a>
-                            </p>
-                        </section>
-
-                        <section className="requirements">
-                            <div className="difficulty">
-                                <h3 data-level={content.cover.level}>{template.titles.level}</h3>
-                                <TutoLevel level={content.cover.level}></TutoLevel>
-                            </div>
-                            <div className="equipment">
-                                <h3>{template.titles.equipment}</h3>
-                                <ul>
-                                    {content.cover.required.equipment.map((e, i)=> {
-                                        return (<li key={i} data-quantity={e.quantity}>{e.object}</li>)
-                                    })}
-                                </ul>
-                            </div>
-                            <div className="skills">
-                                <h3>{template.titles.skills}</h3>
-                                <ul>
-                                    {content.cover.required.skills.map((skill, i)=> {
-                                        return (<li key={i}><a href={skill.link} target="_blank">{skill.title}</a></li>)
-                                    })}
-                                </ul>
-                            </div>
-                        </section>
-
-                        <section className="legal">
-                            <img src={require("../content/template/assets/cc-by-sa.png")} alt="Logo Creative Commons BY-SA"></img>
-                            <p dangerouslySetInnerHTML={{ __html: template.legal }} />
-                        </section>
-                    </div>
-
-                    <PageBuilder content={content} pictures={pictures} selector={this.select.bind(this)}></PageBuilder>
+                    {this.state.format == "pdf" ?[
+                        <CoverPage key={uuid()} content={content} template={template} cover={this.state.cover}></CoverPage>,
+                        <PDFBuilder  key={uuid()} content={content} pictures={pictures} selector={this.select.bind(this)}></PDFBuilder>
+                    ]:
+                    <ArticleBuilder template={this.state.template.article[this.state.language]} content={content} pictures={pictures} selector={this.select.bind(this)}></ArticleBuilder>} 
                 </div>
             </div>
             <div className="text-editor">
+                <div className="notification">
+                    HTML has been copied to clipboard 
+                </div>
                 <h1>{content.cover.title.subject}</h1>
                 <h3>{!(this.state.selection.title !="")?"Selection":this.state.selection.title}</h3>
 
@@ -474,24 +428,45 @@ class App extends React.Component {
                     wrapEnabled={true}
                     // annotations={annotations} 
                 />
-                <p className="language" htmlFor="language">Langage</p>
-
-                <Select
-                    value={selectedOption}
-                    onChange={(languageCode) => {
-                        this.setState({
-                            language: languageCode.value,
-                        })
-                    }}
-                    options={options}
-                />
+                
+                <div className="options">
+                    <div>
+                        <label className="language" htmlFor="language">Langage</label>
+                        <Select
+                            value={selectedLanguageOption}
+                            onChange={(languageCode) => {
+                                this.setState({
+                                    language: languageCode.value,
+                                })
+                            }}
+                            options={languageOptions}
+                        />
+                    </div>
+                    <div>
+                    
+                        <label className="language" htmlFor="language">Format</label>
+                        <Select
+                            value={selectedFormatOption}
+                            onChange={(modeCode) => {
+                                this.setState({
+                                    format: modeCode.value,
+                                })
+                                this.loadFormatStyle(modeCode.value)
+                            }}
+                            options={formatOptions}
+                        />
+                    </div>
+                </div>
                 <div className='actions'>
                     <button className="btn btn-blue" onClick={() => { this.uploadImages() }} >Load project</button>
                     <div>
                         <a  className="btn" 
                             href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
-                            download={ "content-" + this.state.language + ".json"}>Save JSON</a>
-                        <button className="btn" onClick={() => { this.togglePrintMode() }}>Print</button>
+                            download={ "content-" + this.state.language + ".json"}>         Save JSON</a>
+                        
+                        {this.state.format == "pdf" ?
+                            <button className="btn" onClick={() => { this.togglePrintMode() }}> Print</button>
+                            :<button className="btn" onClick={() => { this.saveToClipoard() }}> Copy article HTML</button>}
                     </div>
                 </div>
                 
