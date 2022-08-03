@@ -5,24 +5,26 @@ class TutoLevel extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            level: props.level
+            level: props.level,
+            size: props.size
         }
     }
 
-    static getDerivedStateFromProps(level, state) {
-        return level
+    static getDerivedStateFromProps(props, state) {
+        return props
     }
 
     setBalloon() {
         let ballonLevel = [],
             color = '#529FAC',
-            defaultColor = '#D9D9D9'
+            defaultColor = '#D9D9D9',
+            size = this.state.size
 
         for (let i = 1; i <= 5; i++) {
             ballonLevel.push(
-            <div key={ uuid() } className="level-ballon" width="50" height="50">
+            <div key={ uuid() } className="level-ballon" width={ size + "px" } height={ size + "px" }>
                 <span>{i}</span>
-                <svg key={ uuid() } width="50" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg key={ uuid() } width={ size + "px" } height={ size + "px" } viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_414_967)">
                         <path
                             d="M11.109 14.1734C12.5322 15.9955 17.4313 14.3408 16.642 12.8306C15.3816 10.4192 11.8532 15.5995 9.83693 16.3545C7.82067 17.1096 5.04832 16.7737 6.81255 14.3409"

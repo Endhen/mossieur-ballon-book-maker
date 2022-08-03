@@ -151,3 +151,14 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgb(109, 152, 163);
         }
+
+        .notification {
+            position: absolute;
+            width: 169px;
+            height: 52px;
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
