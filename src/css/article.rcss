@@ -181,6 +181,7 @@
 .com-content-article__body h4,
 .com-content-article__body h3, 
 .com-content-article__body h2 {
+    color: #427a82;
     margin: 0 auto 35px;
     max-width: 1100px; }
 .com-content-article__body h4 { font-size: 30px; }

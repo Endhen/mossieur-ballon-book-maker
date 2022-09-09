@@ -121,6 +121,8 @@ class ArticleBuilder extends React.Component {
 
                     {/* // <!-- Video --> */}
                     <p>{"{loadmoduleid 259}"}</p>
+                    
+                    {console.log(content)}
 
                     {/* // <!-- Transcription video --> */}
                     <p>{"{slider=Transcription de la vidéo}"}</p>

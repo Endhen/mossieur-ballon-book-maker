@@ -45,7 +45,6 @@ class PDFBuilder extends React.Component {
 
 
     buildPage(introduction, tutorials) {
-        introduction.size = 3
         let pageSpace = 12 - introduction.size, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],

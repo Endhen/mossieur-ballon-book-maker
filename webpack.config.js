@@ -8,6 +8,7 @@ module.exports = {
         path: path.join(__dirname, "dist"),
         filename: "main.js",
     },
+    devtool: 'inline-source-map', // No minified js
     module: {
     rules: [
         {

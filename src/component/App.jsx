@@ -8,6 +8,7 @@ import CoverPage from './sections/CoverPage.jsx'
 import AceEditor from "react-ace"
 import Select from 'react-select';
 import cover from './../content/tutorials/cover.webp'
+import appLogo from '../content/template/assets/logo_app.svg'
 
 // import '../css/app.css'
 import '../css/print.css'
@@ -20,7 +21,6 @@ import templateArticle from '../content/template/template-article.json'
 import "ace-builds/src-noconflict/mode-json"
 import 'ace-builds/src-noconflict/theme-solarized_dark'
 
-// import "./../css/article.css"
 
 // TODO Functionnality Break : If some text really need to be long
 
@@ -218,12 +218,14 @@ class App extends React.Component {
 
                         if (file.type == "application/json") {
 
-                             let json = await file.text()
+                            // let json = await file.text()
 
                             if (file.name == "content-fr.json") {
-                                project.content.fr = JSON.parse(json)
+
+                                project.content.fr = JSON.parse(await file.text())
                             } else {
-                                project.content.en = JSON.parse(json)
+
+                                project.content.en = JSON.parse(await file.text())
                             }
 
                         } else if (file.type =="image/webp") {
@@ -373,6 +375,8 @@ class App extends React.Component {
             selectedLanguageOption,
             selectedFormatOption
 
+        // console.log("Text content : ", this.state.textContent)
+
         const languageOptions = [
                 { value: 'fr', label: 'Français' },
                 { value: 'en', label: 'Anglais' }],
@@ -400,6 +404,7 @@ class App extends React.Component {
                 </div>
             </div>
             <div className="text-editor">
+                <img className="logo-app" src={appLogo}></img>
                 <div className="notification">
                     HTML has been copied to clipboard 
                 </div>

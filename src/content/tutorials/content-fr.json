@@ -1,188 +1,113 @@
 {
     "cover": {
-        "projectName": "turtle",
+        "projectName": "nomProjet",
         "title": {
-            "main": "Initiation à la sculpture sur ballon",
-            "chapter": 23,
-            "subject": "Le dinosaure",
+            "main": "Titre du tutoriel",
+            "chapter": 1,
+            "subject": "Sujet du tutoriel",
             "superimposed": false
         },
-        "level": 3, 
+        "level": 1, 
         "links": {
             "tutorial": {
-                "title": "Initiation à la sculpture sur ballon 14 - La fleur",
-                "link": ""
+                "title": "Titre du tutoriel 1 - Sujet du tutoriel",
+                "link": "https:// liens vers la vidéo du tutoriel"
             },
-            "youtube": ""
+            "youtube": "https:// liens vers la chaine de mossieur ballon"
         },
         "required": {
             "equipment": [
-                {"quantity": 1, "object": "Ballon à sculpter vert clair pour le petit dinosaure" },
-                {"quantity": 2, "object": "Ballons à sculpter vert clair pour le grand dinosaure" },
-                {"quantity": 1, "object": "Marqueur" },
-                {"quantity": 1, "object": "Pompe" }
+                {"quantity": 1, "object": "Equipement 1" },
+                {"quantity": 2, "object": "Equipement 2" },
+                {"quantity": "", "object": "Mettre une chaine vide pour ne pas avooir de nombre" }
             ],
             "skills": [
                 { 
+                    "title": "Technique 1 : Les noeuds",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-6-technique-1-les-noeuds"
+                },
+                { 
+                    "title": "Technique 2 : Les bulles",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-7-technique-2-les-bulles"
+                },
+                                { 
                     "title": "Technique 3 : Faire un arrondi",
                     "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-8-technique-3-faire-un-arrondi"
-                },
-                { 
-                    "title": "Technique 4 : Faire un angle",
-                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-9-technique-4-faire-un-angle"
-                },
-                { 
-                    "title": "Technique 5 : Faire une bulle-oreille (pinch-twist)",
-                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-10-technique-5-faire-une-bulle-oreille-pinch-twist"
-                },
-                { 
-                    "title": "Technique 6 : Contrôle de la pression d'air",
-                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air"
                 }
             ]
         }
     },
     "introduction": {
-        "title": "Pour commencer",
+        "title": "Titre général",
         "content": [
-            "Nous continuons notre série dédiée aux faux-jumeaux avec ce nouveau tutoriel qui vous permettra d'apprendre non pas un, mais deux dinosaures.",
-            "Le premier, qui est le plus petit sur la photo ci-dessus, sera un diplodocus à l'allure sympathique et engageante, tandis que le second, qui est le plus grand sur la même photo, sera un vélociraptor à l'allure plutôt féroce et menaçante. Les tailles respectives de ces deux dinosaures sur cette photo sont à l'opposé de ce que l'on sait sur ces animaux préhistoriques.",
-            "Mais le concept le plus important que nous allons revoir avec ce nouveau tutoriel, est celui que nous avons abordé avec le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-21-la-licorne-et-le-cheval\">cheval/licorne</a> de même que celui du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-22-le-lion\">tigre/lion</a>: il est assez facile de recycler une sculpture de ballon et de la transformer radicalement à l'aide de modifications somme toute mineures."
-        ]
+            "Paragraphe 1 : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis a condimentum vitae sapien pellentesque habitant.",
+            "Paragraphe 2 : Sed cras ornare arcu dui vivamus arcu. Est sit amet facilisis magna etiam tempor. Volutpat commodo sed egestas egestas fringilla phasellus faucibus.",
+            "etc ..."
+        ],
+        "size": 3
     },
     "tutorials": [
         {
-            "title": "Le diplodocus en ballon",
-            "introduction": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi dicta ex beatae consectetur culpa libero minima est, a fugit accusantium officia! Adipisci necessitatibus sit eos consectetur, mollitia minima distinctio.",
+            "title": "Titre de sous tutoriel - facultatif",
+            "introduction": "Petite sous introduction. Ce sous-titre et cette introduction peut être utile dans le cas ou il y aurait plusieurs tutoriels  ou variation comme celui du dinosaure. ",
             "sections": [
                 {
-                    "title": "Gonflage et taille du ballon",
+                    "title": "Première étape du tutoriel",
                     "steps": [
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Pre break Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Post break Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "LAST ONE : Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts."
+                        "Chaque section correspond à une sous partie du tutoriel",
+                        "Ce texte est simplement interpreté au format HTML, donc toutes les <strong>balises</strong> fonctionnent",
+                        "Les liens sont donc à mettre au format <a href=\"https://super-lien.com\">HTML</a> en oubliant pas les d'escaper les \" en placent des \\ devant",
+                        "Il est possible d'ajouter une ligne rapidement dans l'editeur JSON de l'application avec le raccourci  \" Shift + Alt + flèche du bas/haut)\"",
+                        "Cela permet de créer une étape rapidement et de voir les différentes mise en pages rapidement ",
+                        "En fonction du nombre d'étapes de la section il faudra ajuter la taille de l'introduction",
+                        "Chaque page contient une grille de 12 blocks d'espace une étape prend un block d'espace, un titre 3 blocks",
+                        "Il est préférable que chaques étapes fassent maximum 5 lignes",
+                        "Le dernier block est mis en valeur et n'a pas de numérotation"
                     ]
                 },
                 {
-                    "title": "Gonflage et taille du ballon",
+                    "title": "Deuxième étape du tutoriel",
                     "steps": [
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Pre break Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Post break Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "LAST ONE : Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts."
+                        "Découper le tutoriel en plusieurs section aide à la compréhension",
+                        "Si l'on passe la souris au dessus de cette étape il est possible de voir le texte editable en haut à gauche de l'éditeur.",
+                        "L'on peut alors voir le numreo et le titre de la partie : n) Titre de la section : Step - m (n et m sont des nombres)",
+                        "Si on clique sur le texte il est possible de changer son contenu qui sera mis à jour automatiquement dans l'aperçu du tutoriel",
+                        "Cependant cette fonctionnalité n'est disponible que pour les étapes",
+                        "À chaque fin de section on saute une page"
                     ]
                 }
             ]
         },
         {
-            "title": "Le diplodocus en ballon",
-            "introduction": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi dicta ex beatae consectetur culpa libero minima est, a fugit accusantium officia! Adipisci necessitatibus sit eos consectetur, mollitia minima distinctio.",
+            "title": "Autre sous tutoriel",
+            "introduction": "Les comptes sont remis à zéro est l'on peut avoir une variante différente du tutoriel",
             "sections": [
                 {
-                    "title": "Gonflage et taille du ballon",
+                    "title": "Première étape du tutoriel",
                     "steps": [
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "=== Pre markeur Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "=== Post markeurSi nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Pour le plus de longueur de ballon possible, il faut en récupérer du coté du nœud. Revoir le tutoriel <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a>",
-                        "Si nécessaire, suivre les étapes 13 à 18 du tutoriel du <a href=\"https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air\"> contrôle de la pression d'air</a> pour savoir comment passer de l'étape précédente à celle-ci.",
-                        "Plier une longueur de ballon d'environ la largeur de 2 doigts dans la main \"de maintien\"",
-                        "Il suffit d'un seul ballon à modeler pour faire le diplodocus.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts.",
-                        "Gonfler le ballon en laissant une marge d'environ la largeur de 5 doigts."
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit."
                     ]
                 }
             ]
         }
     ],
     "transcription": [ 
+        "La transcription n'est utiliser que dans le mode \"Article\"",
         "Good morning ! Today, we will continue our new series which is called: Twist 1 balloon in less than 3 minutes!",
         "This new tutorial was requested on my blog by \"Borner_Line\", which I take the opportunity to salute.",
         "And I remind you, if you're a beginner, you'll probably have to check out some of the tutorials which are in the basic balloon twisting techniques section which you will find in the description, under the video.",
