@@ -155,8 +155,28 @@ class App extends React.Component {
     }
 
     getEditorValue(textContent) {
+
         if (this.state.JSONStatus.isValid) {
+
             return JSON.stringify(textContent[this.state.language], null, 4)
+        } else {
+
+            if(typeof textContent != "string") { // Avoid text content to pass two times for a reason I ignore
+                textContent = JSON.stringify(textContent, null, 4)
+            }
+
+            return textContent
+        }
+    }
+
+    // Duplicate for save
+    getSaveValue(textContent) {
+
+        if (this.state.JSONStatus.isValid) {
+
+            // console.log("text content", textContent) 
+            // console.log("text content Formated", JSON.stringify(textContent, null, 4)) 
+            return JSON.stringify(textContent, null, 4)
         } else {
 
             if(typeof textContent != "string") { // Avoid text content to pass two times for a reason I ignore
@@ -465,7 +485,7 @@ class App extends React.Component {
                     <button className="btn btn-blue" onClick={() => { this.uploadImages() }} >Load project</button>
                     <div>
                         <a  className="btn" 
-                            href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getEditorValue(this.state.textContent)) } 
+                            href={"data:text/json;charset=utf-8," + encodeURIComponent(this.getSaveValue(content)) } 
                             download={ "content-" + this.state.language + ".json"}>         Save JSON</a>
                         
                         {this.state.format == "pdf" ?
