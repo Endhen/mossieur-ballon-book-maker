@@ -1,0 +1,103 @@
+{
+    "cover": {
+        "filename": "Sailboat",
+        "title": {
+            "main": "Initiation à la sculpture sur ballon",
+            "chapter": 24,
+            "subject": "Le voilier",
+            "superimposed": false
+        },
+        "level": 1, 
+        "links": {
+            "tutorial": {
+                "title": "Comment faire un voilier en ballon",
+                "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-24-un-voilier-qui-flotte-sur-l-eau"
+            },
+            "youtube": "https://www.youtube.com/watch?v=BAHpvxOpCdw"
+        },
+        "required": {
+            "equipment": [
+                {"quantity": 1, "object": "1 Ballon à sculpter 260" }
+            ],
+            "skills": [
+                { 
+                    "title": "Technique 2 : Les bulles",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-7-technique-2-les-bulles"
+                },
+                { 
+                    "title": "Technique 4 : Faire un angle",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-9-technique-4-faire-un-angle"
+                },
+                { 
+                    "title": "Technique 5 : La bulle-oreille (pinch-twist)",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-10-technique-5-faire-une-bulle-oreille-pinch-twist"
+                },
+                { 
+                    "title": "Technique 6 : Contrôle de la pression d'air",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-11-technique-6-le-controle-de-la-pression-d-air"
+                }
+            ]
+        }
+    },
+    "introduction": {
+        "title": "Une scupture en moins de 3 minutes !",
+        "content": [
+            "Ce voilier en ballon, qui est très facile à réaliser, et qui peut réellement flotter sur l'eau inaugure un nouveau format de tutoriel : Apprendre à faire une sculpture en moins de 3 minutes !"
+        ]
+    },
+    "tutorials": [
+        {
+            "title": "Un voilier en ballon",
+            "introduction": "Sous-introduction.",
+            "sections": [
+                {
+                    "title": "Titre de section",
+                    "steps": [
+                        "Utiliser un ballon à sculpter (<a href=\"/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-a-quels-ballons-choisir\" target=\"_blank\" rel=\"noopener\">un 260</a>), peu importe la couleur.",
+                        "Laisser environ la largeur d'une main qui ne soit pas gonflée.",
+                        "<a href=\"https://youtu.be/TRz1xcH4dxM?t=56\" target=\"_blank\" rel=\"noopener\">Affiner et allonger le ballon</a>",
+                        "Faire une première <a href=\"/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-7-technique-2-les-bulles\" target=\"_blank\" rel=\"noopener\">bulle</a>",
+                        "suivie d'une seconde bulle,",
+                        "que l'on pince,",
+                        "&nbsp;&nbsp;et que l'on transforme en <a href=\"/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-10-technique-5-faire-une-bulle-oreille-pinch-twist\" target=\"_blank\" rel=\"noopener\">bulle oreille</a>",
+                        "Puis on attrape le noeud de la première bulle",
+                        "Afin de transformer ce première bulle, en bulle-oreille également.",
+                        "Vous devriez obtenir cette forme.",
+                        "Ensuite, formez une boucle, qui soit une peu plus grande que la largeur de votre paume,",
+                        "Et pincer son extrémité pour <a href=\"/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-9-technique-4-faire-un-angle\" target=\"_blank\" rel=\"noopener\">former un angle aigu</a>.",
+                        "S'assurer que les deux cotés de la boucle soient bien de la même taille avant de faire le pli et fermer la boucle.",
+                        "Glisser le pli entre les deux bulles-oreille pour bloquer et sécuriser la boucle.",
+                        "Faire une seconde boucle de la même manière,",
+                        "et de la même taille.",
+                        "Et la sécuriser également au niveau des deux bulles-oreille.",
+                        "Il faut mieux \"enrouler\" le pli, plutôt que le forcer à travers les bulles-oreille, afin d'éviter les frictions.",
+                        "Réarranger les deux boucles et les deux bulles-oreilles,",
+                        "afin que le mat soit bien centré perpendiculairement aux deux boucles.",
+                        "Positionner le mat entre les paumes de vos deux mains,",
+                        "Et comprimer fortement le ballon ,",
+                        "afin de repousser l'air jusqu'à son extrémité.",
+                        "Puis affiner et allonger le mat.",
+                        "Saisir ensuite l'extrémité du mat,",
+                        "afin de former une bulle allongée.",
+                        "cette bulle doit être bien ovale et assez malléable. Elle ne doit pas être ronde,",
+                        "parce que nous allons ensuite la diviser en deux,",
+                        "afin de former deux petites bulles qui, elles, seront bien rondes.",
+                        "Prendre ensuite la bulle du milieu,&nbsp;",
+                        "et la pincer,",
+                        "pour la transformer en bulles-oreille.",
+                        "Vous devriez obtenir cette forme.",
+                        "Retourner le mat et pincer le un peu au-dessus de sa base,",
+                        "afin de former une nouvelle bulle, et donc un nouveau pli.",
+                        "Ce pli nous servira d'ancrage,",
+                        "pour les 2 bulles que nous avons précédemment formées.",
+                        "Il faut maintenant transformer la nouvelle boucle que nous venons de créer en triangle, pour former la voile.",
+                        "Pour ce faire, nous allons diviser la boucle en deux parties inégales,",
+                        "&nbsp;et faire un angle en pinçant le ballon pour former le haut de la voile.&nbsp;",
+                        "Puis nous formerons un autre angle près de la base du mat pour former le côté de la voile.",
+                        "Et voilà ! Ce voilier est très simple à faire, et en plus il&nbsp; peut réellement flotter sur l'eau.<br />Essayez... vous serez bluffé !"
+                    ]
+                }
+            ]
+        }
+    ] 
+}

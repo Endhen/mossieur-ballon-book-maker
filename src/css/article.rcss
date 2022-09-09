@@ -1,0 +1,224 @@
+
+.preview {
+    padding: 50px;
+    background-color: white;
+    width: 750px !important;
+    transform: none !important;
+}
+
+
+
+
+
+/* ---Custom--- */
+
+.level-ballon span {
+    position: absolute;
+    padding: 7px 0 0 10px;
+    color: white;
+    font-size: 11px;
+}
+
+.com-content-article__body {
+  position: relative;
+}
+
+.com-content-article__body::before {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 5px;
+    background: #e5f0f1;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.introduction {
+  display: flex;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.foreword {
+    padding: 40px;
+    width: 70%;
+}
+
+.illustration-balloon-book {
+    max-height: 300px;
+    margin: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+
+.illustration-balloon-book {
+    float: left;
+    width: 30%;
+    margin: 0 25px 25px 0;
+}
+
+.tutorial-requirements h2 { 
+  text-align: left;
+}
+
+
+.language-notice {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    overflow: hidden; 
+
+    margin: auto;
+    max-width: 1150px;
+    border-radius: 15px;
+    box-shadow: 0px 2px 10px 0px #c5e9ef8f;
+}
+
+.language-notice .language-icon { 
+    background: #427a82;
+    padding: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.language-notice p {
+  margin: 20px 30px;
+}
+
+.svg-planet {
+    fill: white;
+    width: 30px;
+}
+
+/* Boxed text on the tuto pages */
+.com-content-article .tutorial-requirements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1100px;
+    margin: 60px auto;
+    padding: 30px min(10vw, 65px);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 1px #0c586420;
+    background-color: #d1e4e7;
+}
+
+.com-content-article .tutos {
+   display: grid;
+   grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
+   column-gap: 20px;
+}
+.com-content-article .tutos figure img {
+   border-radius: 10px;
+   box-shadow: 0px 2px 7px 0px #0b535e21;
+}
+
+.com-content-article .video-transcription {
+   font-style: italic;
+   font-size: 0.9em;
+}
+.com-content-article .video-transcription p {
+   margin: 0.7% 0 0 0 ;
+}
+
+.com-content-article .readmore > a {
+  margin-bottom: 50px;
+  background: #a3669a;
+  color: white;
+}
+
+.com-content-article .readmore > a:hover {
+  color: #a3669a !important;
+  background-color: #f4d6f0 !important;
+  border: solid 1px #a3669a !important;
+}
+
+.com-content-article figure {
+    display: flex !important;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 35px;
+}
+
+.com-content-article figure hr {
+  margin: 10px auto;
+  width: 240px;
+}
+
+
+.jwts_toggleControl {
+    border: none !important;
+    background: #47818a !important;
+    border-radius: 50px !important;
+}
+
+.jwts_toggleControlContainer, 
+.jwts_toggleContent {
+    margin: 0px auto 50px !important;
+    max-width: 1100px;
+}
+
+.com-content-article .forvideo_app {
+  padding: 0 !important;
+}
+
+.com-content-article .download {
+    display: flex;
+    margin: 40px auto;
+    justify-content: center;
+    width: fit-content;
+    text-decoration: none;
+}
+
+.com-content-article .tutorial-requirements h2 {
+    font-size: 25px;
+    color: #427a82; }
+.com-content-article__body h4,
+.com-content-article__body h3, 
+.com-content-article__body h2 {
+    color: #427a82;
+    margin: 0 auto 35px;
+    max-width: 1100px; }
+.com-content-article__body h4 { font-size: 30px; }
+.com-content-article__body h3 {
+    color: #47818a;
+    font-size: 40px; }
+.com-content-article__body > h2 { text-align: center; }
+.com-content-article__body > p {
+  margin: 0 auto 35px;
+  max-width: 1100px;
+}
+
+.com-content-article figcaption {
+    position: relative;
+    line-height: 24px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.com-content-article figcaption span {
+display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -37px;
+    left: -3px;
+    width: 23px;
+    height: 23px;
+    margin-right: 6px;
+    border: 100px;
+    border-radius: 100px;
+    color: white;
+    background: #47818a;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.com-content-article .tutos figure {
+  position: relative;
+}

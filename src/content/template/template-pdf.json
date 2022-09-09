@@ -1,0 +1,28 @@
+{
+    "en": {
+        "reminder": [
+            "This photo tutorial is a complementary resource for the video : ",
+            " which you can also find on ",
+            "Môssieur Ballon's YouTube channel."
+        ],
+        "titles": {
+            "level": "Level",
+            "equipment": "Equipment",
+            "skills": "Techniques used in this tutorial"
+        },
+        "legal": "The editorial and visual content of this tutorial is produced and published by Pierrick Le Brun under a <a href=\"https://creativecommons.org/licenses/by-sa/4.0/deed.en\" target=\"_blank\">Creative Commons, Attribution, Share Alike license</a>.You are entirely free to share and publish it, in part or in whole, provided you clearly give credit to <a href=\"https://www.mossieur-ballon.com/\" target=\"_blank\">Môssieur Ballon</a> and provide a hyperlink pointing back to the original source of the content you used."
+    },
+    "fr": {
+        "reminder": [
+            "Ce tutoriel photo est un outil d'accompagnement au tutoriel vidéo : ",
+            " que vous pouvez également retrouver sur ",
+            "la chaîne YouTube de Môssieur Ballon."
+        ],
+        "titles": {
+            "level": "Niveau",
+            "equipment": "Matériel",
+            "skills": "Techniques utilisées"
+        },
+        "legal": "Le contenu rédactionnel et visuel de ce tutoriel est produit et publié par Pierrick Le Brun <a href=\"https://creativecommons.org/licenses/by-sa/4.0/deed.fr\" target=\"_blank\">sous licence Creative Commons, paternité et partage à l'identique</a>. Vous êtes entièrement libre de le reprendre et de le publier en partie ou dans son intégralité à condition d'en attribuer clairement le crédit à <a href=\"https://www.mossieur-ballon.com/fr/\" target=\"_blank\">Môssieur Ballon</a> et de fournir un lien hypertexte vers la source originale du contenu utilisé."
+    }
+}

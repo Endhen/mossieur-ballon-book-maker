@@ -1,0 +1,147 @@
+{
+    "cover": {
+        "projectName": "nomProjet",
+        "title": {
+            "main": "Titre du tutoriel",
+            "chapter": 1,
+            "subject": "Sujet du tutoriel",
+            "superimposed": false
+        },
+        "level": 1, 
+        "links": {
+            "tutorial": {
+                "title": "Titre du tutoriel 1 - Sujet du tutoriel",
+                "link": "https:// liens vers la vidéo du tutoriel"
+            },
+            "youtube": "https:// liens vers la chaine de mossieur ballon"
+        },
+        "required": {
+            "equipment": [
+                {"quantity": 1, "object": "Equipement 1" },
+                {"quantity": 2, "object": "Equipement 2" },
+                {"quantity": "", "object": "Mettre une chaine vide pour ne pas avooir de nombre" }
+            ],
+            "skills": [
+                { 
+                    "title": "Technique 1 : Les noeuds",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-6-technique-1-les-noeuds"
+                },
+                { 
+                    "title": "Technique 2 : Les bulles",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-7-technique-2-les-bulles"
+                },
+                                { 
+                    "title": "Technique 3 : Faire un arrondi",
+                    "link": "https://www.mossieur-ballon.com/fr/tutoriels/initiation-a-la-sculpture-sur-ballon-8-technique-3-faire-un-arrondi"
+                }
+            ]
+        }
+    },
+    "introduction": {
+        "title": "Titre général",
+        "content": [
+            "Paragraphe 1 : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis a condimentum vitae sapien pellentesque habitant.",
+            "Paragraphe 2 : Sed cras ornare arcu dui vivamus arcu. Est sit amet facilisis magna etiam tempor. Volutpat commodo sed egestas egestas fringilla phasellus faucibus.",
+            "etc ..."
+        ],
+        "size": 3
+    },
+    "tutorials": [
+        {
+            "title": "Titre de sous tutoriel - facultatif",
+            "introduction": "Petite sous introduction. Ce sous-titre et cette introduction peut être utile dans le cas ou il y aurait plusieurs tutoriels  ou variation comme celui du dinosaure. ",
+            "sections": [
+                {
+                    "title": "Première étape du tutoriel",
+                    "steps": [
+                        "Chaque section correspond à une sous partie du tutoriel",
+                        "Ce texte est simplement interpreté au format HTML, donc toutes les <strong>balises</strong> fonctionnent",
+                        "Les liens sont donc à mettre au format <a href=\"https://super-lien.com\">HTML</a> en oubliant pas les d'escaper les \" en placent des \\ devant",
+                        "Il est possible d'ajouter une ligne rapidement dans l'editeur JSON de l'application avec le raccourci  \" Shift + Alt + flèche du bas/haut)\"",
+                        "Cela permet de créer une étape rapidement et de voir les différentes mise en pages rapidement ",
+                        "En fonction du nombre d'étapes de la section il faudra ajuter la taille de l'introduction",
+                        "Chaque page contient une grille de 12 blocks d'espace une étape prend un block d'espace, un titre 3 blocks",
+                        "Il est préférable que chaques étapes fassent maximum 5 lignes",
+                        "Le dernier block est mis en valeur et n'a pas de numérotation"
+                    ]
+                },
+                {
+                    "title": "Deuxième étape du tutoriel",
+                    "steps": [
+                        "Découper le tutoriel en plusieurs section aide à la compréhension",
+                        "Si l'on passe la souris au dessus de cette étape il est possible de voir le texte editable en haut à gauche de l'éditeur.",
+                        "L'on peut alors voir le numreo et le titre de la partie : n) Titre de la section : Step - m (n et m sont des nombres)",
+                        "Si on clique sur le texte il est possible de changer son contenu qui sera mis à jour automatiquement dans l'aperçu du tutoriel",
+                        "Cependant cette fonctionnalité n'est disponible que pour les étapes",
+                        "À chaque fin de section on saute une page"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Autre sous tutoriel",
+            "introduction": "Les comptes sont remis à zéro est l'on peut avoir une variante différente du tutoriel",
+            "sections": [
+                {
+                    "title": "Première étape du tutoriel",
+                    "steps": [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit.",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim blandit volutpat maecenas volutpat blandit."
+                    ]
+                }
+            ]
+        }
+    ],
+    "transcription": [ 
+        "La transcription n'est utiliser que dans le mode \"Article\"",
+        "Good morning ! Today, we will continue our new series which is called: Twist 1 balloon in less than 3 minutes!",
+        "This new tutorial was requested on my blog by \"Borner_Line\", which I take the opportunity to salute.",
+        "And I remind you, if you're a beginner, you'll probably have to check out some of the tutorials which are in the basic balloon twisting techniques section which you will find in the description, under the video.",
+        "Without further ado, let me show you how to make a balloon turtle in less than three minutes!",
+        "We will need 3 balloons: 1 green, 1 brown and 1 white.",
+        "We'll inflate the green balloon, leaving a margin at the beginning and also at the end.",
+        "We're going to split the balloon into two unequal segments, the smaller segments will be on the side with the smaller margin, and the larger segment will be on the side with the larger margin side.",
+        "We align these two long bubbles side by side, and we shorten the longest one, so that they both are the same size as the shorter one.",
+        "This will allow us to make a loop right in the middle of the two bubbles. ",
+        "Then we make a first bubble about (the width of) two fingers, then a second, slightly larger bubble.",
+        "We do exactly the same on the other side, then we lock the two big bubbles together.",
+        "Then we bring the center of the small bubbles closer to the center of the big bubbles, and we lock them together.",
+        "We thin out both segments, and we make a bubble about the width of three fingers, at the end of the shortest segment.",
+        "Then, we align the longest segment, to make another long bubble.",
+        "Then, we take the longest bubble of the two remaining ones, and form a small round bubble at its base, which we will turn into a pinch-twist. That will form the turtle's tail.",
+        "Then inflate the brown balloon, leaving a good margin at the end.",
+        "The knot of the brown balloon will be locked at the junction of the turtle's head and front legs.",
+        "We then make a brown bubble the same size as the turtle's belly,  which will be blocked at the junction of the tail and the hind legs, ",
+        "followed by a second bubble... and a third...",
+        "the bubbles on the sides should be a tiny bit longer than the bubbles in the middle,",
+        "a fourth bubble...",
+        "remember, when you lock balloons together, to use circular movements so that you avoid unnecessary friction",
+        "and the fifth bubble!",
+        "We pierce the end of the balloon that we no longer need, to let the excess air flow out, and we lock it well to make sure that it does not come undone.",
+        "We then take the white balloon, and we will start by making two small bubbles, that we will tie together tightly.",
+        "By locking the knot in this manner and using the pressure which remains at the base of the unused balloon, we will be able to tighten the two bubbles very closely together.",
+        "We cut the unnecessary excess balloon and tie a knot. ",
+        "We have just formed the two eyes of the turtle that we are going to insert in the center of the very first loop we did.",
+        "Like that !",
+        "We make a little drawing for the eyes. and that's it !",
+        "You learned how to make a turtle in less than three minutes!",
+        "There you go, I hope you enjoyed this new format!",
+        "Do not hesitate to tell me which tutorial you would like me to publish next time.",
+        "And as usual: \"See you very soon\", for another lesson, with Môssieur Ballon!",
+        ""
+    ]
+}

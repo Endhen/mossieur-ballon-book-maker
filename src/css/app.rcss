@@ -1,0 +1,231 @@
+        #app {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .logo-app {
+            position: absolute;
+            right: 60px;
+            top: 60px;
+            width: 70px;
+        }
+
+        .ace_scrollbar-h {
+            display: none;
+        }
+
+        .editor-vue {
+            display: none;
+        }
+
+        #ace_editor {
+            box-shadow: 0px 3px 10px 3px #1b4f5961;
+            border-radius: 10px;
+            height: 700px;
+        }
+
+        .preview {
+            width: 750px;
+            transform-origin: 0 0;
+            transform: matrix(.7, 0, 0, .7, 0, 0);
+            /* transform: matrix(1, 0, 0, 1, 0, 0); */
+        }
+
+        .preview-container {
+            height: 100vh;
+            overflow-y: scroll;
+            background: #575757;
+        }
+
+        .page,
+        .cover-page {
+            margin: 30px;
+            box-shadow: 3px 4px 20px 2px #00000045;;
+        }
+
+        .text-editor {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 50px;
+            height: calc(100vh - 100px);
+        }
+
+        .text-editor::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-color: #d3e8eb;
+        }
+
+        .text-editor h1 {
+            font-size: 35px;
+            color: #529fac;
+            margin:  0 0 30px;
+            margin: 0;
+        }
+
+        .text-editor h3 {
+            margin: 10px 0 10px !important;
+            font-size: 30px;
+            color: #458b97;
+        }
+
+        .text-editor textarea {
+            color: #2e2e2e;
+            width: calc(100% - 50px);
+            flex-grow: 2;
+            border-radius: 5px;
+            padding: 25px 25px 0;
+            border: 1px solid rgb(116, 116, 116)
+        }
+
+        .text-editor textarea:focus-visible {
+            border: 2px solid rgb(109, 152, 163) !important;
+            outline: none;
+        }
+
+        .text-editor p {
+            padding: 5px;
+            height: 20px;
+        }
+
+        .text-editor .selection,
+        .text-editor .selection:focus-visible {
+            height: 110px;
+            border: none !important;    
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px 0px #1b4f5930;
+        }
+
+        p.error {
+            color: #b10808;
+            background-color: #ffdada;
+            font-size: 13px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+
+        .language {
+            margin: 20px 0 10px;
+        }
+
+        .actions { 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-right: 15px;
+
+            color: white;
+            font-family: 'Nunito';
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0px 1px 4px 2px #1b4f5957;
+            background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 156, 147) 89%);
+            
+            cursor: pointer;
+        }
+
+        .btn-blue {
+            background: linear-gradient(160deg, rgb(27, 79, 89) 18%, rgb(40, 115, 156) 89%);
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 15px;
+            right: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            border-radius: 100px 0 0 100px !important;
+            background: #9ba8ac17;   
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 100px 0 0 100px !important;
+            background: rgb(109, 152, 163);
+        }
+
+        #ace_editor ::-webkit-scrollbar-thumb {
+            background-color: #2e8a79;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(109, 152, 163);
+        }
+
+        .notification {
+            position: absolute;
+            overflow: hidden;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            width: 245px;
+            height: 45px;
+
+            border-radius: 5px;
+            padding: 10px;
+            top: -75px;
+            right: 50%;
+            box-shadow: 1px 3px 7px 0px #529fac6e;
+            font-weight: 600;
+            text-align: center;
+
+            background: white;
+            color: #323232;
+        }
+
+        .notification::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: #529fac;
+        }
+
+        .notification-show {
+            animation-name: show;
+            animation-duration: 4s;
+        }
+
+        @keyframes show {
+            0%   {transform: translateY(0px);}
+            20%  {transform: translateY(105px);}
+            50%  {transform: translateY(100px);}
+            80%  {transform: translateY(105px);}
+            100% {transform: translateY(0px);}
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+
+        }
+
+        .options > * {
+            flex-grow: 2;
+        }
