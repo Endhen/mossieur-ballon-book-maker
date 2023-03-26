@@ -1,5 +1,5 @@
 import React from "react"
-import Introduction from './Introduction.jsx'
+import Introduction from '../sections/Introduction'
 import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
 import placeholder from '../../content/template/assets/placeholder.svg'
@@ -48,6 +48,7 @@ class PDFBuilder extends React.Component {
         let pageSpace = 12 - introduction.size, // Starting page space minus the introduction section
             content = this.initializeContent(tutorials),
             pages = [],
+            totalStepCounter = 0,
             sectionCounter = 1,
             stepSectionCounter = 1,
             tutorialCounter = 0
@@ -68,13 +69,12 @@ class PDFBuilder extends React.Component {
             pageSpace = 12 // Reinitialize page space
         }
         
-        content.forEach((part, i) => {
+        if (pageSpace >= 0) {
+        // Build tutorial -> build Page -> build ChapterPart -> build section -> build steps
+
+        content.forEach((part, i) => { // <Introduction> / <TutorialIntroduction> / <GeneralIntroduction>
             var isLastPart = i == content.length - 1,
                 partName = Object.keys(part)[0]
-
-            // console.log(part)
-            
-            if (pageSpace >= 0) {
                 
                 if (partName == 'introduction') {
                     let introduction = part.introduction 
@@ -94,23 +94,22 @@ class PDFBuilder extends React.Component {
                     sectionCounter = 1
                 }
             
-                if (partName == 'sectionTitle') { 
+                if (partName == 'sectionTitle' && part.sectionTitle != "") { 
 
-                    if (part.sectionTitle != "") {
-                        currentPage.push(
-                            <h3 key={uuid()} className="steps-title">
-                                <span>{sectionCounter++}</span>{part.sectionTitle}
-                                <TitleOrnement></TitleOrnement>
-                            </h3>
-                        )
-                    }
+                    currentPage.push(
+                        <h3 key={uuid()} className="steps-title">
+                            <span>{sectionCounter++}</span>{part.sectionTitle}
+                            <TitleOrnement></TitleOrnement>
+                        </h3>
+                    )
 
                 }
-            
+
+                // Partie de section steps
                 if (partName == 'steps') {
                     var figures = [],
                         lastFigures,
-                        addedFigures = 0,
+                        addedFigures = 0, // Count figures already added
                         steps = part.steps,
                         breakShift = 0,
                         actualStepSection = stepSectionCounter++,
@@ -165,7 +164,11 @@ class PDFBuilder extends React.Component {
 
                         } else if (isLastStepPart()) {
 
-                            lastFigures = figures.splice(8, figures.length) // Cut figures in two groups 8 + rest
+                            if(figures.length == 9) { // On veut sauter plutôt pour que la 9eme image soit seule
+                                lastFigures = figures.splice(8, figures.length) // Cut figures in two groups 8 + rest
+                            } else {
+                                lastFigures = figures.splice(9, figures.length) // Cut figures in two groups 9 + rest
+                            }
 
                             // Commit the two group 
                             commitToCurrentPage(' figures', figures) 
@@ -176,7 +179,6 @@ class PDFBuilder extends React.Component {
 
                         return ""
                     }
-
 
                     for (let j = figures.length; j < steps.length; j++) {
 
@@ -192,7 +194,6 @@ class PDFBuilder extends React.Component {
                                 defineLayout()
                                 breakShift++
                             } else {
-                                // console.log(j+1-breakShift, 'figure added')
 
                                 try { // Check if image exist 
                                     let figcaptionClassName
@@ -203,13 +204,13 @@ class PDFBuilder extends React.Component {
 
                                     figures.push(
                                         <figure key={uuid()}>
-                                            <img src={this.state.pictures[j]} alt=""></img>
+                                            <img src={this.state.pictures[totalStepCounter++]} alt=""></img>
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                             <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }} className="selection-area"></div>
                                         </figure>
                                     )
 
-                                } catch (e){ // or create from a placeholder
+                                } catch (e) { // or create from a placeholder
 
                                     figures.push(
                                         <figure key={uuid()}>
@@ -237,8 +238,8 @@ class PDFBuilder extends React.Component {
 
                     }
                 }
-            }
-        })
+            })
+        }
 
         return pages
     }

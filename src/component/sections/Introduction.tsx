@@ -1,11 +1,14 @@
 import React from 'react'
 
-class Introduction extends React.Component {
-    render() {
-        let introduction = this.props.content;
+export interface IntroductionContent {
+    title: string,
+    content: string[],
+    size: number
+}
 
-        return (
-            <section className="introduction">
+const Introduction = (introduction: IntroductionContent) => {
+
+    return <section className="introduction">
                 <h2>{introduction.title}</h2>
                 {
                     introduction.content.map((text,i) => {
@@ -13,9 +16,6 @@ class Introduction extends React.Component {
                     })
                 }
             </section>
-        )
-    }
 }
-
 
 export default Introduction

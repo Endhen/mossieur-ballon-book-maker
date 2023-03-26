@@ -1,23 +1,63 @@
 import React from "react"
 
-import TutoLevel from './../svg/TutoLevel.jsx'
-import PlayButton from './../svg/PlayButton.jsx'
 import MainTitleOrnement from './../svg/MainTitleOrnement.jsx'
+import PlayButton from './../svg/PlayButton.jsx'
+import TutoLevel from './../svg/TutoLevel.jsx'
 
 // import cover from './../content/tutorials/cover.webp'
-import logo from './../../content/template/assets/Logo.png' 
+import { ArticleTemplate, DocumentContent, PDFTemplate } from "../App.js"
 import ccBySA from "./../../content/template/assets/cc-by-sa.png"
+import logo from './../../content/template/assets/Logo.png'
 
-class CoverPage extends React.Component {
-    constructor(props) {
+export interface EquipmentItem {
+    quantity: number,
+    object: string
+}
+
+export interface SkillItem {
+    title: string,
+    link: string
+}
+
+export interface CoverPageContent {
+    projectName: string,
+    title: {
+        main: string,
+        chapter: number,
+        subject: string,
+        superimposed: boolean,
+    },
+    level: number,
+    links: {
+        tutorial: {
+            title: string,
+            link: string
+        },
+        youtube: string
+    },
+    required: {
+        equipments: EquipmentItem[],
+        skills: SkillItem[]
+    }
+}
+
+export interface CoverPageState {
+    content: DocumentContent,
+    template: PDFTemplate,
+    cover: string
+}
+
+class CoverPage extends React.Component<CoverPageState, CoverPageState> {
+    constructor(props: CoverPageState) {
         super(props)
         this.state = {
             content: props.content,
-            template: props.template
+            template: props.template,
+            cover: props.cover
         }
     }
 
-    static getDerivedStateFromProps(content, state) {
+    static getDerivedStateFromProps(content: any, state: any) {
         return content
     }
 
@@ -46,9 +86,10 @@ class CoverPage extends React.Component {
                     <p>
                         {template.reminder[0]}  
                         <a href={content.cover.links.tutorial.link} target="_blank">{content.cover.links.tutorial.title}</a>
-                        {template.reminder[1]}
+                        {template.reminder[1]} : <br></br>
                         <a href={content.cover.links.youtube} target="_blank">
-                        {template.reminder[2]}</a>
+                            {template.reminder[2]}
+                        </a>
                     </p>
                 </section>
 
@@ -60,7 +101,7 @@ class CoverPage extends React.Component {
                     <div className="equipment">
                         <h3>{template.titles.equipment}</h3>
                         <ul>
-                            {content.cover.required.equipment.map((e, i)=> {
+                            {content.cover.required.equipments.map((e, i)=> {
                                 return (<li key={i} data-quantity={e.quantity}>{e.object}</li>)
                             })}
                         </ul>

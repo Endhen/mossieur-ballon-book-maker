@@ -1,12 +1,41 @@
 import React from "react"
 import { v4 as uuid } from 'uuid'
+import { DocumentContent } from "../App.js"
 
-import Planet from "../svg/Planet.jsx"
+import PlanetIcon from "../svg/PlanetIcon.jsx"
 import TutoLevel from "../svg/TutoLevel.jsx"
 
+export interface ArticleTemplate {
+    siteUrl: string,
+    video: {
+        title: string,
+        language: {
+            notice: string,
+            instructions: string
+        }
+    },
+    titles: {
+        level: string,
+        equipment: string,
+        skills: string,
+        tutorial: string
+    },
+    download: string,
+    outro: {
+        title: string,
+        content: string
+    }
+}
 
-class ArticleBuilder extends React.Component {
-    constructor(props) {
+export interface IArticleBuilder {
+    content: DocumentContent,
+    pictures: string[],
+    template: ArticleTemplate
+}
+
+class ArticleBuilder extends React.Component<IArticleBuilder, IArticleBuilder> {
+
+    constructor(props: IArticleBuilder) {
         super(props)
         this.state = {
             content: props.content,
@@ -15,7 +44,8 @@ class ArticleBuilder extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(content, state) {
+    // ! Que fait cette fonction ? 
+    static getDerivedStateFromProps(content: any, state: any) {
         return content
     }
 
@@ -35,13 +65,14 @@ class ArticleBuilder extends React.Component {
 
                                 // TODO Add url configuration for pictures instead of blobs
                                 let numerotation = `<span>${i+1}</span>`,
-                                    number = (i+1).toString().padStart(2, 0),
+                                    number = (i+1).toString().padStart(2, "0"),
                                     steps = []
 
                                 try {
                                     steps.push(
                                         <figure key={uuid()}>
-                                            <img src={this.state.pictures[i]} alt=""></img>
+                                            {/* <img src={this.state.pictures[i]} alt=""></img> */}
+                                            <img src={ "https://" + this.state.template.siteUrl + "/images/tutos/" + this.state.content.cover.projectName + `/step${number}.webp` } alt=""></img>
                                             <hr></hr>
                                             <figcaption dangerouslySetInnerHTML={{ __html: numerotation + step }}/>
                                             {/* <div onClick={() => { this.props.selector(actualTutorial, "Step", i , actualStepSection) }} className="selection-area"></div> */}
@@ -75,7 +106,7 @@ class ArticleBuilder extends React.Component {
             let languageNotification =                 
                 <div className="language-notice">
                     <div className="language-icon">
-                        <Planet></Planet>
+                        <PlanetIcon></PlanetIcon>
                     </div>
                     <p><strong>{template.video.language.notice} </strong>{template.video.language.instructions}</p>
                 </div>
@@ -99,7 +130,7 @@ class ArticleBuilder extends React.Component {
                     <div>
                         <h2>{template.titles.equipment}</h2>
                         <ul>
-                            {content.cover.required.equipment.map((e, i)=> {
+                            {content.cover.required.equipments.map((e, i)=> {
                                 return (<li key={uuid()} data-quantity={e.quantity}>{e.object}</li>)
                             })}
                         </ul>
