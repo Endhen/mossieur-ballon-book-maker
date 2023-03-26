@@ -216,7 +216,7 @@ ul {
 .reminder {
     display: flex;
     background-color: #D3E8EB;
-    padding: 10px 175px 10px 70px;
+    padding: 10px 70px 10px 70px;
     color: #529FAC;
     margin-bottom: 30px; }
 .reminder > a {
@@ -300,9 +300,9 @@ ul {
 .steps-title svg {
     position: absolute;
     z-index: -1 !important;
-    top: -420px;
-    right: -130px;
-    width: 350px; }
+    top: -20px;
+    right: -50px;
+    width: fit-content; }
 .steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -363,7 +363,7 @@ ul {
 .last-step-part.final-0-3 figure:nth-last-child(2) img,
 .last-step-part.final-0-6 figure:nth-last-child(3) img,
 .last-step-part.final-0-6 figure:nth-last-child(2) img {
-    height: 200px;
+    min-height: 190px;
 }
 
 .last-step-part.final-0-3 figure:nth-last-child(1),
@@ -469,7 +469,7 @@ ul {
 }
 
 .page figure img {
-    width: 100%;
+    min-width: 55%;
     height: 140px;
     object-fit: cover;
     margin-bottom: 10px;

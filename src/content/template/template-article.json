@@ -1,6 +1,6 @@
 {  
     "fr": {
-        "siteUrl": "staging.mossieur-ballon.com",
+        "siteUrl": "mossieur-ballon.com",
         "video": {
             "title": "Tutoriel Vidéo",
             "language": {
@@ -21,7 +21,7 @@
         }
     },
     "en": {
-        "siteUrl": "staging.mossieur-ballon.com",
+        "siteUrl": "mossieur-ballon.com",
         "video": {
             "title": "Video Tutorial",
             "language": {

@@ -20,8 +20,8 @@ class PageOrnements extends React.Component {
     shuffleColors(colors) {
 
         for (let i = colors.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [colors[i], colors[j]] = [colors[j], colors[i]];
+            const j = Math.floor(Math.random() * (i + 1))
+            [colors[i], colors[j]] = [colors[j], colors[i]]
         }
 
         return colors
