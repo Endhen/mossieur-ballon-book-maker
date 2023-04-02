@@ -4,8 +4,7 @@ import MainTitleOrnement from './../svg/MainTitleOrnement.jsx'
 import PlayButton from './../svg/PlayButton.jsx'
 import TutoLevel from './../svg/TutoLevel.jsx'
 
-// import cover from './../content/tutorials/cover.webp'
-import { ArticleTemplate, DocumentContent, PDFTemplate } from "../App.js"
+import { DocumentContent, PDFTemplate } from "../App.js"
 import ccBySA from "./../../content/template/assets/cc-by-sa.png"
 import logo from './../../content/template/assets/Logo.png'
 

@@ -6,7 +6,9 @@ export interface IntroductionContent {
     size: number
 }
 
-const Introduction = (introduction: IntroductionContent) => {
+export interface IntroductionComponent extends React.FC<IntroductionContent> {}
+
+const Introduction: IntroductionComponent = (introduction) => {
 
     return <section className="introduction">
                 <h2>{introduction.title}</h2>

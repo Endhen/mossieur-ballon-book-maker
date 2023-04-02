@@ -2,7 +2,7 @@ import React from "react"
 import { v4 as uuid } from 'uuid'
 import { DocumentContent } from "../App.js"
 
-import PlanetIcon from "../svg/PlanetIcon.jsx"
+// import PlanetIcon from "../svg/PlanetIcon.jsx" // ! Where did this go ?
 import TutoLevel from "../svg/TutoLevel.jsx"
 
 export interface ArticleTemplate {
@@ -106,7 +106,7 @@ class ArticleBuilder extends React.Component<IArticleBuilder, IArticleBuilder> {
             let languageNotification =                 
                 <div className="language-notice">
                     <div className="language-icon">
-                        <PlanetIcon></PlanetIcon>
+                        {/* <PlanetIcon></PlanetIcon> // ! File lost */}
                     </div>
                     <p><strong>{template.video.language.notice} </strong>{template.video.language.instructions}</p>
                 </div>
@@ -151,10 +151,8 @@ class ArticleBuilder extends React.Component<IArticleBuilder, IArticleBuilder> {
                     { template.video.language.notice != "" ? languageNotification:"" }
 
                     {/* // <!-- Video --> */}
-                    <p>{"{loadmoduleid 259}"}</p>
+                    <p className="video-tag">{"{loadmoduleid 259}"}</p>
                     
-                    {console.log(content)}
-
                     {/* // <!-- Transcription video --> */}
                     <p>{"{slider=Transcription de la vidéo}"}</p>
                     {content.transcription.map(line => {

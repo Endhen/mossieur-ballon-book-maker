@@ -1,13 +1,145 @@
 import React from "react"
-import Introduction from '../sections/Introduction'
+import Introduction, { IntroductionContent } from '../sections/Introduction'
 import TitleOrnement from '../svg/TitleOrnement.jsx'
 import PageOrnements from '../svg/PageOrnements.jsx'
 import placeholder from '../../content/template/assets/placeholder.svg'
 import { v4 as uuid } from 'uuid'
+import { DocumentContent, SelectorFunction } from "../App"
 
+export interface TutorialSectionContent {
+    title: string,
+    steps: string[]
+}
 
-class PDFBuilder extends React.Component {
-    constructor(props) {
+export interface TutorialContent {
+    title: string,
+    introduction: string,
+    sections: TutorialSectionContent[]
+}
+
+export interface SectionTitle { sectionTitle: string }
+export interface Steps { steps: string[] }
+export interface TutorialIntroduction {
+    title: string,
+    text: string,
+}
+
+export interface IPDFBuilder {
+    content: DocumentContent,
+    pictures: string[]
+}
+
+// Generic validator ? 
+function isSectionTitle(section: any): section is SectionTitle {
+    return (section as SectionTitle).sectionTitle !== undefined
+}
+
+function isSteps(section: any): section is Steps {
+    return (section as Steps).steps !== undefined
+}
+
+function isTutorialIntroduction(section: any): section is TutorialIntroduction {
+    return (section as TutorialIntroduction).title !== undefined
+        || (section as TutorialIntroduction).text !== undefined
+}
+
+type FlattenedContent = Array<TutorialIntroduction | SectionTitle | Steps>
+type FigureElement = JSX.IntrinsicElements["figure"]
+
+interface PDFBuilderProps {
+    content: DocumentContent,
+    pictures: string[],
+    selector: SelectorFunction
+}
+
+function isLastStepPart(remaining: string[], addedFigures: number): boolean {
+    // If there is no remaining steps to convert to figures, it is last step
+    return 0 >= remaining.length - addedFigures 
+}
+
+function defineClassName(isLastPart: boolean, figures: FigureElement[], addedFigures: number, steps: string[]) {
+    let lastStepSectionClassName = isLastPart && isLastStepPart(steps, addedFigures) ? " last-step-section":"",
+        lastStepPartClassName = isLastStepPart(steps, addedFigures) ? " last-step-part":"",
+        finalStepsClassName = ''
+    
+    finalStepsClassName = ' final-' + (figures.length % 3) + '-' + figures.length
+
+    if (figures.length > 9) {
+        lastStepPartClassName = ""
+    }
+
+    return lastStepSectionClassName + lastStepPartClassName + finalStepsClassName
+}
+
+function commitToCurrentPage(currentPage: any, figureClassName: string, figuresToCommit: any[]) {
+
+    if (!(figureClassName == "laststep")) {
+
+        currentPage.push(React.createElement("div", 
+            { className: "steps" + figureClassName, key: uuid() }, 
+            [ ...figuresToCommit ]
+        ))
+        // figures = []
+    }
+}
+
+function commitPageToDocument(pages: any[], currentPage: any[], pageSpace: number) {
+
+    pages.push(React.createElement("div", 
+        { className: `page` , key: uuid() }, 
+        [
+            ...currentPage, 
+            <PageOrnements key={uuid()}></PageOrnements>,
+            <span key={uuid()} className="page-number">{pages.length + 1}</span>
+        ]
+    ))
+
+    currentPage = [] // Reinitialize current page state
+    pageSpace = 12 // Reinitialize page space
+}
+
+function defineLayout(
+        figures: FigureElement[], 
+        pageSpace: number, 
+        steps: string[], 
+        isLastPart: boolean, 
+        addedFigures: any, 
+        remainingFigures: any[], 
+        currentPage: any, 
+        pages: any[]
+            ): string {
+
+    let className = defineClassName(isLastPart, figures, addedFigures, steps)
+
+    if (isLastStepPart(steps, addedFigures) && (figures.length < 9)) {
+        // Last step section : Final layout
+
+        if (figures.length % 3 == 1) 
+            pageSpace -= 3
+        else pageSpace = 3
+
+    } else if (isLastStepPart(steps, addedFigures)) {
+
+        if (figures.length == 9) // On veut sauter plutôt pour que la 9eme image soit seule
+            remainingFigures = figures.splice(8, figures.length) // Cut figures in two groups 8 + rest
+        else 
+            remainingFigures = figures.splice(9, figures.length) // Cut figures in two groups 9 + rest
+        
+        // Commit the two group 
+        commitToCurrentPage(currentPage, ' figures', figures) 
+        commitPageToDocument(pages, currentPage, pageSpace)
+        commitToCurrentPage(currentPage, defineClassName(isLastPart, remainingFigures, addedFigures, steps) + ' lastFigures', remainingFigures)
+        commitPageToDocument(pages, currentPage, pageSpace)
+
+        className =  "laststep" // Signal that it was the last step
+    }
+
+    return className
+}
+
+class PDFBuilder extends React.Component<PDFBuilderProps, IPDFBuilder> {
+
+    constructor(props: PDFBuilderProps) {
         super(props)
         this.state = {
             content: props.content,
@@ -15,72 +147,65 @@ class PDFBuilder extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(content, state) {
+    public static getDerivedStateFromProps(content: any, state: any) {
         return content
     }
 
-    getSectionSize() {
-        return 1;
-    }
-
-    getContentCopy(content) {
-        return JSON.parse(JSON.stringify(content))
-    }
-
     // Return flattened JSON structure
-    initializeContent(content) {
+    public initializeContent(tutorialContent: TutorialContent[]): FlattenedContent {
 
-        let rearrangedContent  = []
+        let rearrangedContent: FlattenedContent = []
 
-        for(let tutorial of content) {
-            rearrangedContent.push({introduction: { title: tutorial.title, text: tutorial.introduction}})
+        tutorialContent.forEach( tutorial => { 
+        
+            rearrangedContent.push({
+                title: tutorial.title, 
+                text: tutorial.introduction
+            })
+
             for(let section of tutorial.sections) {
                 rearrangedContent.push({sectionTitle: section.title})
                 rearrangedContent.push({steps: section.steps})
             }
-        }
+
+        })
 
         return rearrangedContent
+
     }
 
+    public buildPage(introduction: IntroductionContent, tutorials: TutorialContent[]): any {
 
-    buildPage(introduction, tutorials) {
-        let pageSpace = 12 - introduction.size, // Starting page space minus the introduction section
-            content = this.initializeContent(tutorials),
-            pages = [],
-            totalStepCounter = 0,
-            sectionCounter = 1,
-            stepSectionCounter = 1,
-            tutorialCounter = 0
-        var currentPage = [<Introduction key={uuid()} content={introduction}></Introduction>]
-
-        function commitPageToDocument() {
-
-            pages.push(React.createElement("div", 
-                { className: `page` , key: uuid() }, 
-                [
-                    ...currentPage, 
-                    <PageOrnements key={uuid()}></PageOrnements>,
-                    <span key={uuid()} className="page-number">{pages.length + 1}</span>
-                ]
-            ))
-
-            currentPage = [] // Reinitialize current page state
-            pageSpace = 12 // Reinitialize page space
+        interface BuilderCounter {
+            tutorial: number,
+            section: number,
+            stepSection: number,
+            totalSteps: number
         }
+
+        let pageSpace: number = 12 - introduction.size, // Starting page space minus the introduction section
+            content: FlattenedContent = this.initializeContent(tutorials),
+            pages: any[] = [], // ! any
+            counter: BuilderCounter = {
+                tutorial: 0,
+                section: 1,
+                stepSection: 1,
+                totalSteps: 0
+            }
+
+        var currentPage = [<Introduction key={uuid()} {...introduction}></Introduction>]
         
         if (pageSpace >= 0) {
         // Build tutorial -> build Page -> build ChapterPart -> build section -> build steps
 
-        content.forEach((part, i) => { // <Introduction> / <TutorialIntroduction> / <GeneralIntroduction>
-            var isLastPart = i == content.length - 1,
-                partName = Object.keys(part)[0]
+        content.forEach((part, i) => {
+            var isLastPart = i == content.length - 1
                 
-                if (partName == 'introduction') {
-                    let introduction = part.introduction 
+                if (isTutorialIntroduction(part)) {
+                    let introduction = part 
                     // pageSpace < 6 ? commitPageToDocument():null
-                    tutorialCounter++
-                    stepSectionCounter = 1
+                    counter.tutorial++
+                    counter.stepSection = 1
                     pageSpace -= 3
 
                     currentPage.push(React.createElement("div", 
@@ -91,14 +216,14 @@ class PDFBuilder extends React.Component {
                         ]
                     ))
 
-                    sectionCounter = 1
+                    counter.section = 1
                 }
             
-                if (partName == 'sectionTitle' && part.sectionTitle != "") { 
+                if (isSectionTitle(part) && part.sectionTitle != "") { 
 
                     currentPage.push(
                         <h3 key={uuid()} className="steps-title">
-                            <span>{sectionCounter++}</span>{part.sectionTitle}
+                            <span>{counter.section++}</span>{part.sectionTitle}
                             <TitleOrnement></TitleOrnement>
                         </h3>
                     )
@@ -106,79 +231,15 @@ class PDFBuilder extends React.Component {
                 }
 
                 // Partie de section steps
-                if (partName == 'steps') {
-                    var figures = [],
-                        lastFigures,
-                        addedFigures = 0, // Count figures already added
-                        steps = part.steps,
-                        breakShift = 0,
-                        actualStepSection = stepSectionCounter++,
-                        actualTutorial = tutorialCounter
+                if (isSteps(part)) {
 
-                    function isLastStepPart() { // If there is no remaining steps to convert to figures, it is last step
-                        return 0 >= steps.length - addedFigures 
-                    }
-
-                    function commitToCurrentPage(figureClassName, figuresToCommit) {
-
-                        if (!(figureClassName == "laststep")) {
-                            currentPage.push(React.createElement("div", 
-                                { className: "steps" + figureClassName, key: uuid() }, 
-                                [...figuresToCommit]
-                            ))
-                            figures = []
-
-                            commitPageToDocument()
-                        }
-                    }
-
-                    function defineClassName(figures) {
-                        let lastStepSectionClassName = isLastPart && isLastStepPart()?" last-step-section":"",
-                            lastStepPartClassName = isLastStepPart()?" last-step-part":"",
-                            finalStepsClassName = ''
-                        
-                        finalStepsClassName = ' final-' + (figures.length % 3) + '-' + figures.length
-
-                        if (figures.length > 9) {
-                            lastStepPartClassName = ""
-                        }
-
-                        return lastStepSectionClassName + lastStepPartClassName + finalStepsClassName
-                    }
-                    
-                    function defineLayout(figures) {
-
-                        let className = defineClassName(figures)
-
-                        if(isLastStepPart() && (figures.length < 9)) {
-
-                            // Last step section : Final layout
-
-                            if (figures.length % 3 == 1) {
-                                pageSpace -= 3
-                            } else {
-                                pageSpace = 3
-                            }
-
-                            return className
-
-                        } else if (isLastStepPart()) {
-
-                            if(figures.length == 9) { // On veut sauter plutôt pour que la 9eme image soit seule
-                                lastFigures = figures.splice(8, figures.length) // Cut figures in two groups 8 + rest
-                            } else {
-                                lastFigures = figures.splice(9, figures.length) // Cut figures in two groups 9 + rest
-                            }
-
-                            // Commit the two group 
-                            commitToCurrentPage(' figures', figures) 
-                            commitToCurrentPage(defineClassName(lastFigures) + ' lastFigures', lastFigures)
-
-                            return "laststep" // Signal that it was the last step
-                        }
-
-                        return ""
-                    }
+                    var figures: FigureElement[] = [],
+                        remainingFigures: FigureElement[] = [],
+                        breakShift: number = 0,
+                        addedFigures: number = 0, // Count figures already added
+                        steps: string[] = part.steps,
+                        actualTutorial: number = counter.tutorial,
+                        actualStepSection: number = counter.stepSection++
 
                     for (let j = figures.length; j < steps.length; j++) {
 
@@ -188,10 +249,10 @@ class PDFBuilder extends React.Component {
                         
                         let step = '<span>'+ (j+1-breakShift) +'</span>' + steps[j] // Add numerotation to the step text content 
                         
-                        if (pageSpace >= 0) { // if the space took by a row of steps do not exced le page space
+                        if (pageSpace >= 0) { // if used space by a row of steps does not exced page space
                             
                             if (steps[j] == "break") {
-                                defineLayout()
+                                defineLayout(figures, pageSpace, steps, isLastPart, addedFigures, remainingFigures, currentPage, pages)
                                 breakShift++
                             } else {
 
@@ -204,7 +265,7 @@ class PDFBuilder extends React.Component {
 
                                     figures.push(
                                         <figure key={uuid()}>
-                                            <img src={this.state.pictures[totalStepCounter++]} alt=""></img>
+                                            <img src={this.state.pictures[counter.totalSteps++]} alt=""></img>
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
                                             <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }} className="selection-area"></div>
                                         </figure>
@@ -216,7 +277,7 @@ class PDFBuilder extends React.Component {
                                         <figure key={uuid()}>
                                             <img src={placeholder} alt=""></img>
                                             <figcaption dangerouslySetInnerHTML={{ __html: step }}/>
-                                            <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }}className="selection-area"></div>
+                                            <div onClick={() => { this.props.selector(actualTutorial, "Step", (j+1-breakShift) , actualStepSection) }} className="selection-area"></div>
                                         </figure>
                                     )
                                 }
@@ -225,16 +286,16 @@ class PDFBuilder extends React.Component {
                             }
                         } else { // Not enough space
                             j-- // We reset the loop we've done
-                            var className = defineLayout(figures)
+                            var className: string = defineLayout(figures, pageSpace, steps, isLastPart, addedFigures, remainingFigures, currentPage, pages)
                             
-                            commitToCurrentPage(className, figures) // And push currentfigures to the currentPage to make space before restarting loop
+                            commitToCurrentPage(currentPage, "", figures) // And push currentfigures to the currentPage to make space before restarting loop
                         }
                     }
 
-                    if (figures != []) {
+                    if (figures.length !== 0) {
                             // Commit all added figures
-                            var className = defineLayout(figures)
-                            commitToCurrentPage(className, figures)
+                            var className: string = defineLayout(figures, pageSpace, steps, isLastPart, addedFigures, remainingFigures, currentPage, pages)
+                            commitToCurrentPage(currentPage, "", figures)
 
                     }
                 }
@@ -255,6 +316,5 @@ class PDFBuilder extends React.Component {
         )
     }
 }
-
 
 export default PDFBuilder

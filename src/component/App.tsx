@@ -7,7 +7,7 @@ import Select, { GroupBase, OptionsOrGroups, SingleValue } from 'react-select'
 import appLogo from '../content/template/assets/logo_app.svg'
 import cover from './../content/tutorials/cover.webp'
 import ArticleBuilder, { ArticleTemplate } from './builder/ArticleBuilder'
-import PDFBuilder from './builder/PDFBuilder'
+import PDFBuilder, { TutorialContent } from './builder/PDFBuilder'
 import CoverPage, { CoverPageContent } from './sections/CoverPage'
 
 // import '../css/app.css'
@@ -93,17 +93,6 @@ export interface PDFTemplate {
     legal: string
 }
 
-export interface TutorialSectionContent {
-    title: string,
-    steps: string[]
-}
-
-export interface TutorialContent {
-    title: string,
-    introduction: string,
-    sections: TutorialSectionContent[]
-}
-
 export interface DocumentContent {
     cover: CoverPageContent,
     introduction: IntroductionContent,
@@ -139,6 +128,8 @@ export interface AppState {
     selection: CurrentSelection,
     JSONStatus: JSONStatus
 }
+
+export type SelectorFunction = (turorial: number, type: string, position: number, section: number) => void
 
 class App extends React.Component<{}, AppState> {
     
